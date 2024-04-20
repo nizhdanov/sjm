@@ -18,6 +18,8 @@
       }
     ],
     "paths": {
+      "@/icons/*": ["./components/icons/*"],
+      "@/ui/*": ["./components/ui/*"],
       "@/*": ["./*"]
     }
   },
