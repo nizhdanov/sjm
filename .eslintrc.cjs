@@ -31,6 +31,8 @@ module.exports = {
         namedComponents: ['arrow-function'],
         unnamedComponents: 'arrow-function'
       }
-    ]
+    ],
+    'no-console': ['warn', { allow: ['info', 'error'] }],
+    'react/no-unknown-property': ['error']
   }
 };

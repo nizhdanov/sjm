@@ -1,7 +1,7 @@
-import { TestingForm } from './(components)/TestingForm';
+import { TestingContainer } from './(components)/TestingContainer';
 
 const Testing = () => {
-  return <TestingForm />;
+  return <TestingContainer />;
 };
 
 export default Testing;
