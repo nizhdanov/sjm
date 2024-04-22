@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { avenirNext } from '@/assets/fonts';
 
 import { Header } from './(components)/Header';
+import { Providers } from './providers';
 
 import '@/assets/styles/globals.css';
 
@@ -19,8 +20,10 @@ const RootLayout = ({
   return (
     <html lang='ru'>
       <body className={avenirNext.className}>
-        <Header />
-        {children}
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

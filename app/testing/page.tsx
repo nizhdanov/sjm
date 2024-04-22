@@ -1,11 +1,7 @@
-import { Typography } from '@/ui/typography';
+import { TestingForm } from './(components)/TestingForm';
 
 const Testing = () => {
-  return (
-    <main className='flex flex-col gap-5 px-4 py-5'>
-      <Typography tag='h1'>Тестирование</Typography>
-    </main>
-  );
+  return <TestingForm />;
 };
 
 export default Testing;
