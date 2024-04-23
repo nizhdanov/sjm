@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <main className='flex flex-col gap-5 px-4 py-5'>
       <Button variant='outline'>Фильтры</Button>
-      <Link href='/testing' className={buttonVariants()}>
+      <Link href='/prof-test' className={buttonVariants()}>
         Пройти тестирование
       </Link>
     </main>
