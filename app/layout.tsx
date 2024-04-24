@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { avenirNext } from '@/assets/fonts';
 
-import { Header } from './(components)/Header';
+import { Header } from './_components/Header';
 import { Providers } from './providers';
 
 import '@/assets/styles/globals.css';

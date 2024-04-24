@@ -1,4 +1,5 @@
-import { ProfTestContainer } from './(components)/ProfTestContainer';
+import { ProfTestContainer } from './_components/ProfTestContainer';
+import { ProfTestProviders } from './_components/ProfTestProviders';
 
 interface ProfTestProps {
   // searchParams: { [key: string]: string | string[] | undefined };
@@ -6,7 +7,11 @@ interface ProfTestProps {
 
 const ProfTest = ({}: ProfTestProps) => {
   // await questions
-  return <ProfTestContainer />;
+  return (
+    <ProfTestProviders>
+      <ProfTestContainer />
+    </ProfTestProviders>
+  );
 };
 
 export default ProfTest;
