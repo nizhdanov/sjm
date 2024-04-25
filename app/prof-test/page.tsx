@@ -1,12 +1,11 @@
+import { getAllQuestions } from '@/lib/api/questions';
+
 import { ProfTestContainer } from './_components/ProfTestContainer';
 import { ProfTestProviders } from './_components/ProfTestProviders';
 
-interface ProfTestProps {
-  // searchParams: { [key: string]: string | string[] | undefined };
-}
-
-const ProfTest = ({}: ProfTestProps) => {
-  // await questions
+const ProfTest = async () => {
+  const questions = await getAllQuestions();
+  console.log(questions);
   return (
     <ProfTestProviders>
       <ProfTestContainer />

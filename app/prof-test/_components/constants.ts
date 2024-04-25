@@ -5,6 +5,7 @@ const values = {
   uts: '0/0/0.3/0.7'
 };
 
+// ИВТ-ИСиТ-ПИ-УТС
 export const questions: Question[] = [
   {
     id: '1',
@@ -63,5 +64,3 @@ export const questions: Question[] = [
     ]
   }
 ];
-
-// ИВТ-ИСиТ-ПИ-УТС

@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 export interface AnswersContextProps {
-  answers: Answer[];
+  answers: [];
   setAnswers: ((answers: Answer[]) => void) | (() => Answer[]);
 }
 

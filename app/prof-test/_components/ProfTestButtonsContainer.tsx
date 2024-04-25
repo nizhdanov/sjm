@@ -23,8 +23,9 @@ export const ProfTestButtonsContainer = () => {
     return finalResult;
   }
 
-  function onClickNextBtn() {
+  async function onClickNextBtn() {
     if (stage === questions.length - 1) {
+      // await
       router.push(`/prof-test/result/${calculateResult(answers)}`);
     } else {
       setStage(stage + 1);

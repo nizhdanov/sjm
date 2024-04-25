@@ -33,6 +33,19 @@ module.exports = {
       }
     ],
     'no-console': ['warn', { allow: ['info', 'error'] }],
-    'react/no-unknown-property': ['error']
+    'react/no-unknown-property': [
+      'error',
+      {
+        ignore: [
+          'args',
+          'attach',
+          'position-y',
+          'transparent',
+          'rotation-x',
+          'position',
+          'receiveShadow'
+        ]
+      }
+    ]
   }
 };

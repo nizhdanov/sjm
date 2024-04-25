@@ -9,7 +9,6 @@ const directions = ['ivt', 'isit', 'pi', 'uts'];
 const ProfTestResult = ({ params }: ProfTestResultProps) => {
   // await questions
   const koefs = params.sum.split('-');
-
   const directionsWithKoefs = directions
     .map((direction, index) => ({
       direction,
