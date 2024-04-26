@@ -83,7 +83,7 @@ const specialtiesData: Prisma.SpecialtyCreateInput[] = [
           weight: 0
         },
         {
-          weight: 0.7
+          weight: 0.5
         }
       ]
     }
@@ -184,76 +184,62 @@ async function main() {
     }
   });
 
-  for (const v of valuesIvt) {
+  let i = 0;
+  for (const o of optionsOrder1) {
     await prisma.valuesInOptions.create({
       data: {
-        optionId: optionsOrder1[0].id,
-        valueId: v.id
+        optionId: o.id,
+        valueId: valuesIvt[i].id
       }
     });
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: o.id,
+        valueId: valuesIsit[i].id
+      }
+    });
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: o.id,
+        valueId: valuesPi[i].id
+      }
+    });
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: o.id,
+        valueId: valuesUts[i].id
+      }
+    });
+    i++;
   }
 
-  for (const v of valuesIsit) {
+  i = 0;
+  for (const o of optionsOrder2) {
     await prisma.valuesInOptions.create({
       data: {
-        optionId: optionsOrder1[1].id,
-        valueId: v.id
+        optionId: o.id,
+        valueId: valuesIvt[i].id
       }
     });
-  }
-
-  for (const v of valuesPi) {
     await prisma.valuesInOptions.create({
       data: {
-        optionId: optionsOrder1[2].id,
-        valueId: v.id
+        optionId: o.id,
+        valueId: valuesIsit[i].id
       }
     });
-  }
-
-  for (const v of valuesUts) {
     await prisma.valuesInOptions.create({
       data: {
-        optionId: optionsOrder1[3].id,
-        valueId: v.id
+        optionId: o.id,
+        valueId: valuesPi[i].id
       }
     });
-  }
-
-  for (const v of valuesIvt) {
     await prisma.valuesInOptions.create({
       data: {
-        optionId: optionsOrder2[0].id,
-        valueId: v.id
+        optionId: o.id,
+        valueId: valuesUts[i].id
       }
     });
-  }
-
-  for (const v of valuesIsit) {
-    await prisma.valuesInOptions.create({
-      data: {
-        optionId: optionsOrder2[1].id,
-        valueId: v.id
-      }
-    });
-  }
-
-  for (const v of valuesPi) {
-    await prisma.valuesInOptions.create({
-      data: {
-        optionId: optionsOrder2[2].id,
-        valueId: v.id
-      }
-    });
-  }
-
-  for (const v of valuesUts) {
-    await prisma.valuesInOptions.create({
-      data: {
-        optionId: optionsOrder2[3].id,
-        valueId: v.id
-      }
-    });
+    i++;
   }
 
   console.log(`Seeding finished.`);

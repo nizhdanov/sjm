@@ -10,7 +10,7 @@ CREATE TABLE "Specialty" (
 -- CreateTable
 CREATE TABLE "Value" (
     "id" TEXT NOT NULL,
-    "specialtyId" TEXT NOT NULL,
+    "specialtyCode" TEXT NOT NULL,
     "weight" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "Value_pkey" PRIMARY KEY ("id")
@@ -52,7 +52,7 @@ CREATE UNIQUE INDEX "Question_order_key" ON "Question"("order");
 CREATE UNIQUE INDEX "Question_body_key" ON "Question"("body");
 
 -- AddForeignKey
-ALTER TABLE "Value" ADD CONSTRAINT "Value_specialtyId_fkey" FOREIGN KEY ("specialtyId") REFERENCES "Specialty"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Value" ADD CONSTRAINT "Value_specialtyCode_fkey" FOREIGN KEY ("specialtyCode") REFERENCES "Specialty"("code") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Option" ADD CONSTRAINT "Option_questionOrder_fkey" FOREIGN KEY ("questionOrder") REFERENCES "Question"("order") ON DELETE RESTRICT ON UPDATE CASCADE;

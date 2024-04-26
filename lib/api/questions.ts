@@ -1,3 +1,5 @@
+import { Value } from '@prisma/client';
+
 import { prisma } from './prisma';
 
 export const getAllQuestions = async () =>
@@ -6,10 +8,37 @@ export const getAllQuestions = async () =>
   });
 
 export const postCalculateResult = async (data: string[]) => {
-  const o = await prisma.option.findMany({
+  const options = await prisma.option.findMany({
     where: {
-      id: data[0]
+      OR: data.map((optionId) => ({ id: optionId }))
+    },
+    select: {
+      values: true
     }
   });
-  console.log(o);
+  let values: Value[] = [];
+
+  const valuesId = options.flatMap(({ values }) => values).map(({ valueId }) => valueId);
+
+  for (const id of valuesId) {
+    const foundValue = await prisma.value.findUnique({ where: { id } });
+    if (foundValue) {
+      values.push(foundValue);
+    }
+  }
+
+  const result = values.reduce((acc, value) => {
+    const existingValue = acc.find((v) => v.specialtyCode === value.specialtyCode);
+    if (existingValue) {
+      existingValue.sum += value.weight;
+    } else {
+      acc.push({
+        sum: value.weight,
+        specialtyCode: value.specialtyCode
+      });
+    }
+    return acc;
+  }, []);
+
+  return result;
 };

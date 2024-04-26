@@ -7,7 +7,7 @@ const Home = async () => {
   const specialties = await getAllSpecialties();
   return (
     <main className='flex flex-col gap-5 px-4 py-5'>
-      <Button variant='outline'>Фильтры</Button>
+      {/* <Button variant='outline'>Фильтры</Button> */}
       <Link href='/prof-test' className={buttonVariants()}>
         Пройти тестирование
       </Link>

@@ -1,7 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
 
-import { postCalculateResult } from '@/api/questions';
 import { Button } from '@/ui/button';
 
 import { useAnswers } from './contexts/answers/useAnswers';
@@ -12,7 +11,6 @@ interface ProfTestButtonsProps {
 }
 
 export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
-  const router = useRouter();
   const { stage, setStage } = useStage();
   const { answers } = useAnswers();
 
@@ -22,9 +20,13 @@ export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
 
   async function onClickNextBtn() {
     if (stage === questionsLenght - 1) {
-      await postCalculateResult(answers.map((answer) => answer.optionId));
-
-      // router.push(`/prof-test/result/#`);
+      await fetch('/api/result', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(answers.map((answer) => answer.optionId))
+      });
     } else {
       setStage(stage + 1);
     }

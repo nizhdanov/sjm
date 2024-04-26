@@ -15,11 +15,11 @@ model Specialty {
 }
 
 model Value {
-  id          String            @id @default(cuid())
+  id            String            @id @default(cuid())
   specialtyCode String
-  weight      Float
-  speciality  Specialty         @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
-  options     ValuesInOptions[]
+  weight        Float
+  speciality    Specialty         @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
+  options       ValuesInOptions[]
 }
 
 model Question {
