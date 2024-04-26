@@ -5,10 +5,10 @@ import { ProfTestProviders } from './_components/ProfTestProviders';
 
 const ProfTest = async () => {
   const questions = await getAllQuestions();
-  console.log(questions);
+
   return (
     <ProfTestProviders>
-      <ProfTestContainer />
+      <ProfTestContainer questions={questions} />
     </ProfTestProviders>
   );
 };

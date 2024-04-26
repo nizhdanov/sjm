@@ -7,58 +7,85 @@ const specialtiesData: Prisma.SpecialtyCreateInput[] = [
   // ivt
   {
     code: '09.03.01',
-    title: 'Информатика и вычислительная техника'
+    title: 'Информатика и вычислительная техника',
+    values: {
+      create: [
+        {
+          weight: 0.5
+        },
+        {
+          weight: 0.2
+        },
+        {
+          weight: 0.3
+        },
+        {
+          weight: 0
+        }
+      ]
+    }
   },
   // isit
   {
     code: '09.03.02',
-    title: 'Информационные системы и технологии'
+    title: 'Информационные системы и технологии',
+    values: {
+      create: [
+        {
+          weight: 0.3
+        },
+        {
+          weight: 0.5
+        },
+        {
+          weight: 0.2
+        },
+        {
+          weight: 0
+        }
+      ]
+    }
   },
   // pi
   {
     code: '09.03.04',
-    title: 'Программная инженерия'
+    title: 'Программная инженерия',
+    values: {
+      create: [
+        {
+          weight: 0.2
+        },
+        {
+          weight: 0
+        },
+        {
+          weight: 0.5
+        },
+        {
+          weight: 0.3
+        }
+      ]
+    }
   },
   // uts
   {
     code: '27.03.04',
-    title: 'Управление в технических системах'
-  }
-];
-
-const ivtConnect = {
-  code: '09.03.01'
-};
-
-const valuesData: Prisma.ValueCreateInput[] = [
-  {
-    weight: 0.5,
-    speciality: {
-      connect: ivtConnect
-    }
-  },
-  {
-    weight: 0.3,
-    speciality: {
-      connect: {
-        code: '09.03.02'
-      }
-    }
-  },
-  {
-    weight: 0.2,
-    speciality: {
-      connect: {
-        code: '09.03.04'
-      }
-    }
-  },
-  {
-    weight: 0,
-    speciality: {
-      connect: {
-        code: '27.03.04'
-      }
+    title: 'Управление в технических системах',
+    values: {
+      create: [
+        {
+          weight: 0
+        },
+        {
+          weight: 0.3
+        },
+        {
+          weight: 0
+        },
+        {
+          weight: 0.7
+        }
+      ]
     }
   }
 ];
@@ -70,160 +97,36 @@ const questionsData: Prisma.QuestionCreateInput[] = [
     options: {
       create: [
         {
-          label: 'Люблю анализировать проблему и искать технические решения',
-          values: {
-            create: [
-              {
-                weight: 0.5,
-                speciality: {
-                  connect: {
-                    code: '09.03.01'
-                  }
-                }
-              },
-              {
-                weight: 0.3,
-                speciality: {
-                  connect: {
-                    code: '09.03.02'
-                  }
-                }
-              },
-              {
-                weight: 0.2,
-                speciality: {
-                  connect: {
-                    code: '09.03.04'
-                  }
-                }
-              },
-              {
-                weight: 0,
-                speciality: {
-                  connect: {
-                    code: '27.03.04'
-                  }
-                }
-              }
-            ]
-          }
+          label: 'Люблю анализировать проблему и искать технические решения'
         },
         {
-          label: 'Ищу способы автоматизации решения',
-          values: {
-            create: [
-              {
-                weight: 0.2,
-                speciality: {
-                  connect: {
-                    code: '09.03.01'
-                  }
-                }
-              },
-              {
-                weight: 0.5,
-                speciality: {
-                  connect: {
-                    code: '09.03.02'
-                  }
-                }
-              },
-              {
-                weight: 0,
-                speciality: {
-                  connect: {
-                    code: '09.03.04'
-                  }
-                }
-              },
-              {
-                weight: 0.3,
-                speciality: {
-                  connect: {
-                    code: '27.03.04'
-                  }
-                }
-              }
-            ]
-          }
+          label: 'Ищу способы автоматизации решения'
         },
         {
-          label: 'Думаю, как программно можно решить эту проблему',
-          values: {
-            create: [
-              {
-                weight: 0.3,
-                speciality: {
-                  connect: {
-                    code: '09.03.01'
-                  }
-                }
-              },
-              {
-                weight: 0.2,
-                speciality: {
-                  connect: {
-                    code: '09.03.02'
-                  }
-                }
-              },
-              {
-                weight: 0.5,
-                speciality: {
-                  connect: {
-                    code: '09.03.04'
-                  }
-                }
-              },
-              {
-                weight: 0,
-                speciality: {
-                  connect: {
-                    code: '27.03.04'
-                  }
-                }
-              }
-            ]
-          }
+          label: 'Думаю, как программно можно решить эту проблему'
         },
         {
-          label: 'Составляю план и последовательность шагов для решения',
-          values: {
-            create: [
-              {
-                weight: 0,
-                speciality: {
-                  connect: {
-                    code: '09.03.01'
-                  }
-                }
-              },
-              {
-                weight: 0,
-                speciality: {
-                  connect: {
-                    code: '09.03.02'
-                  }
-                }
-              },
-              {
-                weight: 0.3,
-                speciality: {
-                  connect: {
-                    code: '09.03.04'
-                  }
-                }
-              },
-              {
-                weight: 0.7,
-                speciality: {
-                  connect: {
-                    code: '27.03.04'
-                  }
-                }
-              }
-            ]
-          }
+          label: 'Составляю план и последовательность шагов для решения'
+        }
+      ]
+    }
+  },
+  {
+    body: 'Какой из этих проектов вы бы предпочли делать?',
+    order: 2,
+    options: {
+      create: [
+        {
+          label: 'Создание умного дома, подключенного к сети'
+        },
+        {
+          label: 'Разработка приложения для автоматизации учета времени в проектах'
+        },
+        {
+          label: 'Создание новой компьютерной игры'
+        },
+        {
+          label: 'Оптимизация работы местной транспортной системы'
         }
       ]
     }
@@ -232,12 +135,127 @@ const questionsData: Prisma.QuestionCreateInput[] = [
 
 async function main() {
   console.log(`Start seeding ...`);
-  for (const s of specialtyData) {
-    const specialty = await prisma.specialty.create({
+
+  for (const s of specialtiesData) {
+    await prisma.specialty.create({
       data: s
     });
-    console.log(`Created specialty: ${specialty.title}`);
   }
+
+  for (const q of questionsData) {
+    await prisma.question.create({
+      data: q
+    });
+  }
+
+  const optionsOrder1 = await prisma.option.findMany({
+    where: {
+      questionOrder: 1
+    }
+  });
+
+  const optionsOrder2 = await prisma.option.findMany({
+    where: {
+      questionOrder: 2
+    }
+  });
+
+  const valuesIvt = await prisma.value.findMany({
+    where: {
+      specialtyCode: '09.03.01'
+    }
+  });
+
+  const valuesIsit = await prisma.value.findMany({
+    where: {
+      specialtyCode: '09.03.02'
+    }
+  });
+
+  const valuesPi = await prisma.value.findMany({
+    where: {
+      specialtyCode: '09.03.04'
+    }
+  });
+
+  const valuesUts = await prisma.value.findMany({
+    where: {
+      specialtyCode: '27.03.04'
+    }
+  });
+
+  for (const v of valuesIvt) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder1[0].id,
+        valueId: v.id
+      }
+    });
+  }
+
+  for (const v of valuesIsit) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder1[1].id,
+        valueId: v.id
+      }
+    });
+  }
+
+  for (const v of valuesPi) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder1[2].id,
+        valueId: v.id
+      }
+    });
+  }
+
+  for (const v of valuesUts) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder1[3].id,
+        valueId: v.id
+      }
+    });
+  }
+
+  for (const v of valuesIvt) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder2[0].id,
+        valueId: v.id
+      }
+    });
+  }
+
+  for (const v of valuesIsit) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder2[1].id,
+        valueId: v.id
+      }
+    });
+  }
+
+  for (const v of valuesPi) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder2[2].id,
+        valueId: v.id
+      }
+    });
+  }
+
+  for (const v of valuesUts) {
+    await prisma.valuesInOptions.create({
+      data: {
+        optionId: optionsOrder2[3].id,
+        valueId: v.id
+      }
+    });
+  }
+
   console.log(`Seeding finished.`);
 }
 

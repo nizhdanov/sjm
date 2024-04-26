@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 
-import { AnswersContext } from './AnswersContext';
+import { Answer, AnswersContext } from './AnswersContext';
 
 export interface AnswersProviderProps {
   children: React.ReactNode;

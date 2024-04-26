@@ -1,13 +1,17 @@
 'use client';
 import { useRouter } from 'next/navigation';
 
+import { postCalculateResult } from '@/api/questions';
 import { Button } from '@/ui/button';
 
 import { useAnswers } from './contexts/answers/useAnswers';
 import { useStage } from './contexts/stage/useStage';
-import { questions } from './constants';
 
-export const ProfTestButtonsContainer = () => {
+interface ProfTestButtonsProps {
+  questionsLenght: number;
+}
+
+export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
   const router = useRouter();
   const { stage, setStage } = useStage();
   const { answers } = useAnswers();
@@ -15,24 +19,18 @@ export const ProfTestButtonsContainer = () => {
   function onClickBackBtn() {
     setStage(stage - 1);
   }
-  function calculateResult(strs: Answer[]) {
-    const result = strs.map((obj) => obj.value.split('/'));
-    const finalResult = result[0]
-      .map((_, index) => result.map((arr) => parseFloat(arr[index])).reduce((a, b) => a + b))
-      .join('-');
-    return finalResult;
-  }
 
   async function onClickNextBtn() {
-    if (stage === questions.length - 1) {
-      // await
-      router.push(`/prof-test/result/${calculateResult(answers)}`);
+    if (stage === questionsLenght - 1) {
+      await postCalculateResult(answers.map((answer) => answer.optionId));
+
+      // router.push(`/prof-test/result/#`);
     } else {
       setStage(stage + 1);
     }
   }
 
-  const value = answers.find((answer) => answer.order === stage + 1)?.value;
+  const value = answers.find((answer) => answer.order === stage + 1)?.optionId;
   return (
     <div className='flex w-full flex-col items-center gap-5 px-4'>
       <div className='grid w-full grid-cols-2 gap-5'>

@@ -18,6 +18,8 @@
       }
     ],
     "paths": {
+      "@/api/*": ["./lib/api/*"],
+      // "@/types/*": ["./lib/api/types/*"],
       "@/icons/*": ["./components/icons/*"],
       "@/ui/*": ["./components/ui/*"],
       "@/*": ["./*"]
