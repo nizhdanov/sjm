@@ -1,5 +1,5 @@
-import { AnswersProvider } from './contexts/answers/AnswersProvider';
-import { StageProvider } from './contexts/stage/StageProvider';
+import { AnswersProvider } from '../_contexts/answers/AnswersProvider';
+import { StageProvider } from '../_contexts/stage/StageProvider';
 
 interface ProfTestProvidersProps {
   children: React.ReactNode;

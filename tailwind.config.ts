@@ -48,8 +48,8 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        inst: {
-          pi: '#FE0000'
+        su: {
+          purple: 'hsl(var(--su-purple))'
         }
       },
       borderRadius: {

@@ -19,9 +19,12 @@
     ],
     "paths": {
       "@/api/*": ["./lib/api/*"],
-      // "@/types/*": ["./lib/api/types/*"],
+      "@/helpers/*": ["./lib/helpers/*"],
+      "@/utils/*": ["./lib/utils/*"],
       "@/icons/*": ["./components/icons/*"],
+      "@/r3f/*": ["./components/r3f/*"],
       "@/ui/*": ["./components/ui/*"],
+      "@/fonts": ["./assets/fonts"],
       "@/*": ["./*"]
     }
   },

@@ -3,8 +3,8 @@ import { useRouter } from 'next/navigation';
 
 import { Button } from '@/ui/button';
 
-import { useAnswers } from './contexts/answers/useAnswers';
-import { useStage } from './contexts/stage/useStage';
+import { useAnswers } from '../_contexts/answers/useAnswers';
+import { useStage } from '../_contexts/stage/useStage';
 
 interface ProfTestButtonsProps {
   questionsLenght: number;
@@ -13,6 +13,7 @@ interface ProfTestButtonsProps {
 export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
   const { stage, setStage } = useStage();
   const { answers } = useAnswers();
+  const { push } = useRouter();
 
   function onClickBackBtn() {
     setStage(stage - 1);
@@ -20,14 +21,17 @@ export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
 
   async function onClickNextBtn() {
     if (stage === questionsLenght - 1) {
-      const result = await fetch('/api/result', {
+      const res = await fetch('/api/result', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(answers.map((answer) => answer.optionId))
       });
-      console.log(result);
+
+      const code: string = await res.json();
+
+      push(`/${code.replaceAll('.', '-')}`);
     } else {
       setStage(stage + 1);
     }

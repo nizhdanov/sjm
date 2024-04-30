@@ -5,7 +5,7 @@ import { Label } from '@/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/ui/radio-group';
 import { Typography } from '@/ui/typography';
 
-import { useAnswers } from './contexts/answers/useAnswers';
+import { useAnswers } from '../_contexts/answers/useAnswers';
 
 interface QuestProps {
   question: QuestionWithOptions;

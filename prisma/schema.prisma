@@ -7,11 +7,102 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Institute {
+  title     String    @unique
+  faculties Faculty[]
+}
+
+model Faculty {
+  title          String      @unique
+  institute      Institute   @relation(fields: [instituteTitle], references: [title])
+  instituteTitle String
+  specialties    Specialty[]
+}
+
 model Specialty {
-  id     String  @id @default(cuid())
-  code   String  @unique
-  title  String
-  values Value[]
+  faculty      Faculty                 @relation(fields: [facultyTitle], references: [title])
+  facultyTitle String
+  code         String                  @unique
+  title        String
+  values       Value[]
+  teachers     TeachersInSpecialties[]
+  courses      Course[]
+  step         String
+
+  // documents
+}
+
+model Course {
+  id            String            @id @default(cuid())
+  subjects      SubjectsCourses[]
+  descrition    String
+  year          Int
+  specialtyCode String
+  speciality    Specialty         @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
+}
+
+model Subject {
+  name        String             @unique
+  teachers    TeachersSubjects[]
+  specialties SubjectsCourses[]
+}
+
+model SubjectsCourses {
+  courseId    String
+  subjectName String
+  course      Course  @relation(fields: [courseId], references: [id])
+  subject     Subject @relation(fields: [subjectName], references: [name])
+
+  @@id([courseId, subjectName])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+  teacherId String?  @unique
+}
+
+model TeachersInSpecialties {
+  teacherId     String
+  teacher       Teacher   @relation(fields: [teacherId], references: [id])
+  specialtyCode String
+  speciality    Specialty @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
+
+  @@id([teacherId, specialtyCode])
+}
+
+model Teacher {
+  id          String                  @id @default(cuid())
+  user        User?
+  lastName    String
+  firstName   String
+  midlleName  String
+  specialties TeachersInSpecialties[]
+  skills      TeachersSkills[]
+  subjects    TeachersSubjects[]
+}
+
+model TeachersSkills {
+  teacherId String
+  skillName String
+  teacher   Teacher @relation(fields: [teacherId], references: [id])
+  skill     Skill   @relation(fields: [skillName], references: [name])
+
+  @@id([teacherId, skillName])
+}
+
+model TeachersSubjects {
+  teacherId   String
+  subjectName String
+  teacher     Teacher @relation(fields: [teacherId], references: [id])
+  subject     Subject @relation(fields: [subjectName], references: [name])
+
+  @@id([teacherId, subjectName])
+}
+
+model Skill {
+  name     String           @unique
+  teachers TeachersSkills[]
 }
 
 model Value {

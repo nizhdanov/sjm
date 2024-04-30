@@ -27,7 +27,7 @@ export const postCalculateResult = async (data: string[]) => {
     }
   }
 
-  const result = values.reduce((acc, value) => {
+  const result: { sum: number; specialtyCode: string }[] = values.reduce((acc, value) => {
     const existingValue = acc.find((v) => v.specialtyCode === value.specialtyCode);
     if (existingValue) {
       existingValue.sum += value.weight;
@@ -39,6 +39,8 @@ export const postCalculateResult = async (data: string[]) => {
     }
     return acc;
   }, []);
+
+  result.sort((a, b) => b.sum - a.sum);
 
   return result;
 };

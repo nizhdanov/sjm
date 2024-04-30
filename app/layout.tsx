@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { avenirNext } from '@/assets/fonts';
+import { cn } from '@/utils/cn';
 
 import { Header } from './_components/Header';
 import { Providers } from './providers';
@@ -19,7 +20,7 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang='ru'>
-      <body className={avenirNext.className}>
+      <body className={cn(avenirNext.className, 'bg-[#E7F1FF]')}>
         <Providers>
           <Header />
           {children}

@@ -43,7 +43,10 @@ module.exports = {
           'transparent',
           'rotation-x',
           'position',
-          'receiveShadow'
+          'receiveShadow',
+          'castShadow',
+          'object',
+          'material'
         ]
       }
     ]

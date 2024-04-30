@@ -1,12 +1,17 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import { avenirNext } from '@/assets/fonts';
+import { avenirNext, openSans } from '@/assets/fonts';
 import { cn } from '@/lib/utils/cn';
 
-const typographyVariants = cva('', {
+const typographyVariants = cva('text-foreground', {
   variants: {
     variant: {
-      default: cn(avenirNext.className, 'text-base')
+      default: cn(avenirNext.className, 'text-base'),
+      h1: cn(openSans.className, 'text-xl font-bold '),
+      h1_secondary: cn(openSans.className, 'text-xl font-semibold '),
+      h2: cn(openSans.className, 'text-lg font-bold '),
+      h2_secondary: cn(openSans.className, 'text-lg font-semibold '),
+      h3: cn(openSans.className, 'text-base font-bold ')
     }
   },
   defaultVariants: {
