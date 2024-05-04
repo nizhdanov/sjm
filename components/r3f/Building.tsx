@@ -1,5 +1,6 @@
 'use client';
 import { useMemo, useState } from 'react';
+import { Course } from '@prisma/client';
 import { useGLTF } from '@react-three/drei';
 import { SkeletonUtils } from 'three-stdlib';
 
@@ -25,7 +26,7 @@ interface BuildingModelProps {
 }
 
 const BuildingModel = ({ onClick, item, grid, scale }: BuildingModelProps) => {
-  const { scene, nodes, materials } = useGLTF(`/models/${item}.glb`);
+  const { scene } = useGLTF(`/models/${item}.glb`);
   // Skinned meshes cannot be re-used in threejs without cloning them
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   return (
@@ -41,9 +42,11 @@ const BuildingModel = ({ onClick, item, grid, scale }: BuildingModelProps) => {
   );
 };
 
-interface BuildingProps extends Omit<BuildingModelProps, 'onClick'> {}
+interface BuildingProps extends Omit<BuildingModelProps, 'onClick'> {
+  course: Course;
+}
 
-export const Building = ({ item, grid, scale }: BuildingProps) => {
+export const Building = ({ item, grid, scale, course }: BuildingProps) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -53,13 +56,13 @@ export const Building = ({ item, grid, scale }: BuildingProps) => {
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerContent>
             <DrawerHeader className='text-left'>
-              <DrawerTitle>Edit profile</DrawerTitle>
-              <DrawerDescription>Make changes to your profile here. Click save</DrawerDescription>
+              <DrawerTitle>{course?.year} курс</DrawerTitle>
+              <DrawerDescription>{course?.descrition}</DrawerDescription>
             </DrawerHeader>
-            Коробка
+            {}
             <DrawerFooter className='pt-2'>
               <DrawerClose asChild>
-                <Button variant='outline'>Cancel</Button>
+                <Button variant='outline'>Закрыть</Button>
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>

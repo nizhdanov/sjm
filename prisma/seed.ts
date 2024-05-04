@@ -3,87 +3,196 @@ import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const specialtiesData: Prisma.SpecialtyCreateInput[] = [
-  // ivt
+// const subjectsData: Prisma.SubjectCreateInput[] = [
+//   {
+//     name: 'Базы данных'
+//   },
+//   {
+//     name: 'Основы Информационной безопасности'
+//   },
+//   {
+//     name: 'Ин.яз'
+//   },
+//   {
+//     name: 'Введение в проф деятельность'
+//   },
+//   {
+//     name: 'Алгоритмы и структуры данных'
+//   },
+//   {
+//     name: 'Математический анализ'
+//   },
+//   {
+//     name: 'ФК'
+//   },
+//   {
+//     name: 'Программирование'
+//   },
+//   {
+//     name: 'Дискретная математика'
+//   },
+//   {
+//     name: 'Дифференциальные уравнения'
+//   },
+//   {
+//     name: 'Безопасность баз данных'
+//   },
+//   {
+//     name: 'Прикладная криптография'
+//   },
+//   {
+//     name: 'Основы проектной деятельности'
+//   },
+//   {
+//     name: 'Операционные системы '
+//   },
+//   {
+//     name: 'Работа в команде'
+//   },
+//   {
+//     name: 'Сети ЭВМ'
+//   },
+//   {
+//     name: 'Большие данные'
+//   },
+//   {
+//     name: 'Архитектура ИС'
+//   },
+//   {
+//     name: 'Моделирование систем'
+//   },
+//   {
+//     name: 'Администрирование в ИС'
+//   },
+//   {
+//     name: 'Управление IT проектами'
+//   },
+//   {
+//     name: 'Тестирование и сопровождение ПО'
+//   },
+//   {
+//     name: 'Методы защиты'
+//   },
+//   {
+//     name: 'Методы проектирования ИС'
+//   },
+//   {
+//     name: 'Профессиональный англиский'
+//   },
+//   {
+//     name: 'Информационная безопасность и защита'
+//   }
+// ];
+
+const institutesData: Prisma.InstituteCreateInput[] = [
   {
-    code: '09.03.01',
-    title: 'Информатика и вычислительная техника',
-    values: {
+    title: 'Политехнический институт',
+    specialties: {
       create: [
         {
-          weight: 0.5
+          code: '09.03.01',
+          title: 'Информатика и вычислительная техника',
+          values: {
+            create: [
+              {
+                weight: 0.5
+              },
+              {
+                weight: 0.2
+              },
+              {
+                weight: 0.3
+              },
+              {
+                weight: 0
+              }
+            ]
+          },
+          step: 'Бакалавриат',
+          points: 180
         },
+        // isit
         {
-          weight: 0.2
+          code: '09.03.02',
+          title: 'Информационные системы и технологии',
+          courses: {
+            create: [
+              {
+                year: 1,
+                descrition:
+                  'На первом курсе вы обучитесь таким фундаментальным дисциплинам, как базы данных, алгоритмы и структуры данных. Все эти дисциплины помогут начать создавать собственные приложения, участвовать в хакатонах и различных грантах. Первый курс это начало пути к таким профессиям как системный аналитик, администратор баз данных, руководитель в области информационных технологий'
+              },
+              {
+                year: 2,
+                descrition:
+                  'На втором курсе вы сможете выбрать вид спорта, в котором хотите развиваться. Ознакомитесь с сосновыми методами защиты информации и баз данных, а углубленное изучение математики поможет в разработке сложных и интересных приложений. Например, дискретная математика лежит в основе всех сервисов доставки и такси'
+              }
+            ]
+          },
+          values: {
+            create: [
+              {
+                weight: 0.3
+              },
+              {
+                weight: 0.5
+              },
+              {
+                weight: 0.2
+              },
+              {
+                weight: 0
+              }
+            ]
+          },
+          step: 'Бакалавриат',
+          points: 200
         },
+        // pi
         {
-          weight: 0.3
+          code: '09.03.04',
+          title: 'Программная инженерия',
+          values: {
+            create: [
+              {
+                weight: 0.2
+              },
+              {
+                weight: 0
+              },
+              {
+                weight: 0.5
+              },
+              {
+                weight: 0.3
+              }
+            ]
+          },
+          step: 'Бакалавриат',
+          points: 212
         },
+        // uts
         {
-          weight: 0
-        }
-      ]
-    }
-  },
-  // isit
-  {
-    code: '09.03.02',
-    title: 'Информационные системы и технологии',
-    values: {
-      create: [
-        {
-          weight: 0.3
-        },
-        {
-          weight: 0.5
-        },
-        {
-          weight: 0.2
-        },
-        {
-          weight: 0
-        }
-      ]
-    }
-  },
-  // pi
-  {
-    code: '09.03.04',
-    title: 'Программная инженерия',
-    values: {
-      create: [
-        {
-          weight: 0.2
-        },
-        {
-          weight: 0
-        },
-        {
-          weight: 0.5
-        },
-        {
-          weight: 0.3
-        }
-      ]
-    }
-  },
-  // uts
-  {
-    code: '27.03.04',
-    title: 'Управление в технических системах',
-    values: {
-      create: [
-        {
-          weight: 0
-        },
-        {
-          weight: 0.3
-        },
-        {
-          weight: 0
-        },
-        {
-          weight: 0.5
+          code: '27.03.04',
+          title: 'Управление в технических системах',
+          values: {
+            create: [
+              {
+                weight: 0
+              },
+              {
+                weight: 0.3
+              },
+              {
+                weight: 0
+              },
+              {
+                weight: 0.5
+              }
+            ]
+          },
+          step: 'Бакалавриат',
+          points: 156
         }
       ]
     }
@@ -136,9 +245,19 @@ const questionsData: Prisma.QuestionCreateInput[] = [
 async function main() {
   console.log(`Start seeding ...`);
 
-  for (const s of specialtiesData) {
-    await prisma.specialty.create({
-      data: s
+  // const uniqueSubjectsData = subjectsData.filter(
+  //   (subject, index, self) => index === self.findIndex((s) => s.name === subject.name)
+  // );
+
+  // for (const s of uniqueSubjectsData) {
+  //   await prisma.subject.create({
+  //     data: s
+  //   });
+  // }
+
+  for (const i of institutesData) {
+    await prisma.institute.create({
+      data: i
     });
   }
 

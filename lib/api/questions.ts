@@ -8,39 +8,43 @@ export const getAllQuestions = async () =>
   });
 
 export const postCalculateResult = async (data: string[]) => {
-  const options = await prisma.option.findMany({
-    where: {
-      OR: data.map((optionId) => ({ id: optionId }))
-    },
-    select: {
-      values: true
-    }
-  });
-  let values: Value[] = [];
+  try {
+    const options = await prisma.option.findMany({
+      where: {
+        OR: data.map((optionId) => ({ id: optionId }))
+      },
+      select: {
+        values: true
+      }
+    });
+    let values: Value[] = [];
 
-  const valuesId = options.flatMap(({ values }) => values).map(({ valueId }) => valueId);
+    const valuesId = options.flatMap(({ values }) => values).map(({ valueId }) => valueId);
 
-  for (const id of valuesId) {
-    const foundValue = await prisma.value.findUnique({ where: { id } });
-    if (foundValue) {
-      values.push(foundValue);
+    for (const id of valuesId) {
+      const foundValue = await prisma.value.findUnique({ where: { id } });
+      if (foundValue) {
+        values.push(foundValue);
+      }
     }
+
+    const result: { sum: number; specialtyCode: string }[] = values.reduce((acc, value) => {
+      const existingValue = acc.find((v) => v.specialtyCode === value.specialtyCode);
+      if (existingValue) {
+        existingValue.sum += value.weight;
+      } else {
+        acc.push({
+          sum: value.weight,
+          specialtyCode: value.specialtyCode
+        });
+      }
+      return acc;
+    }, []);
+
+    result.sort((a, b) => b.sum - a.sum);
+
+    return result;
+  } catch (error) {
+    console.error(error);
   }
-
-  const result: { sum: number; specialtyCode: string }[] = values.reduce((acc, value) => {
-    const existingValue = acc.find((v) => v.specialtyCode === value.specialtyCode);
-    if (existingValue) {
-      existingValue.sum += value.weight;
-    } else {
-      acc.push({
-        sum: value.weight,
-        specialtyCode: value.specialtyCode
-      });
-    }
-    return acc;
-  }, []);
-
-  result.sort((a, b) => b.sum - a.sum);
-
-  return result;
 };

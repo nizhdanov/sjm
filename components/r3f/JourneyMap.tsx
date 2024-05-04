@@ -1,30 +1,33 @@
 'use client';
 import dynamic from 'next/dynamic';
 
+import { DetailedSpecialty } from '@/api/specialties';
 import { dom } from '@/helpers/dom';
 import { cn } from '@/utils/cn';
 
 import { Base, ViewPortal } from './ViewPortal';
 
 const Building = dynamic(() => import('./Building').then((mod) => mod.Building), { ssr: false });
+const BasicModel = dynamic(() => import('./BasicModel').then((mod) => mod.BasicModel), {
+  ssr: false
+});
 
-const roadCoords = [
-  [0, 0],
-  [0, 4],
-  [4, 4],
-  [4, 0],
-  [0, 0]
-];
+interface JourneyMapProps {
+  specialty: DetailedSpecialty;
+}
 
-export const JourneyMap = ({ className, ...props }: React.ComponentProps<typeof ViewPortal>) => {
+export const JourneyMap = ({
+  className,
+  specialty,
+  ...props
+}: React.ComponentProps<typeof ViewPortal> & JourneyMapProps) => {
   return (
     <>
       <ViewPortal className={cn(className)} {...props}>
-        <Building item='test' grid={[-1, -1]} scale={0.05} />
-        {/* <Building item='test2' grid={[6, 6]} />
-        <Building item='test' grid={[-6, -2]} />
-        <Building item='test2' grid={[-4, -4]} /> */}
+        <Building grid={[0, 0]} scale={0.1} item='test' course={specialty?.courses[0]!} />
+        <BasicModel grid={[2, 2]} name='road' scale={0.05} />
         <Base />
+        <color attach='background' args={['white']} />
       </ViewPortal>
       <dom.Out />
     </>

@@ -1,11 +1,13 @@
 import { createContext } from 'react';
 
+export type Stage = number | 'start';
+
 export interface StageContextProps {
-  stage: number;
+  stage: Stage;
   setStage: (stage: number) => void;
 }
 
 export const StageContext = createContext<StageContextProps>({
-  stage: 0,
+  stage: 'start',
   setStage: () => {}
 });

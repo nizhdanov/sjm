@@ -15,6 +15,8 @@ export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
   const { answers } = useAnswers();
   const { push } = useRouter();
 
+  const value = answers.find((answer) => answer.order === stage + 1)?.optionId;
+
   function onClickBackBtn() {
     setStage(stage - 1);
   }
@@ -37,22 +39,14 @@ export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
     }
   }
 
-  const value = answers.find((answer) => answer.order === stage + 1)?.optionId;
   return (
-    <div className='flex w-full flex-col items-center gap-5 px-4'>
-      <div className='grid w-full grid-cols-2 gap-5'>
-        <Button
-          className='w-full'
-          variant='outline'
-          disabled={stage === 0}
-          onClick={onClickBackBtn}
-        >
-          Назад
-        </Button>
-        <Button className='w-full' disabled={Boolean(!value)} onClick={onClickNextBtn}>
-          Далее
-        </Button>
-      </div>
+    <div className='grid w-full grid-cols-2 gap-5 '>
+      <Button className='w-full' variant='outline' disabled={stage === 0} onClick={onClickBackBtn}>
+        Назад
+      </Button>
+      <Button className='w-full' disabled={Boolean(!value)} onClick={onClickNextBtn}>
+        Далее
+      </Button>
     </div>
   );
 };

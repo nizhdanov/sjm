@@ -14,6 +14,9 @@ const config = {
       }
     },
     extend: {
+      height: {
+        's-minus-navbar': 'calc(100svh - 56px)'
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -48,6 +51,11 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
+
+        ui: {
+          gray: 'hsl(var(--ui-gray))'
+        },
+        // SU colors
         su: {
           purple: 'hsl(var(--su-purple))'
         }

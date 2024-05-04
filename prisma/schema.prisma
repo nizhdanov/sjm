@@ -13,38 +13,37 @@ model Institute {
 }
 
 model Faculty {
-  title          String      @unique
-  institute      Institute   @relation(fields: [instituteTitle], references: [title])
+  title          String              @unique
   instituteTitle String
+  institute      Institute           @relation(fields: [instituteTitle], references: [title])
   specialties    Specialty[]
+  teachers       TeachersOfFaculty[]
 }
 
 model Specialty {
-  faculty      Faculty                 @relation(fields: [facultyTitle], references: [title])
   facultyTitle String
-  code         String                  @unique
-  title        String
-  values       Value[]
-  teachers     TeachersInSpecialties[]
-  courses      Course[]
+  code         String   @unique
+  title        String   
   step         String
-
-  // documents
+  points       Int
+  courses      Course[]
+  faculty      Faculty  @relation(fields: [facultyTitle], references: [title])
+  values       Value[]
 }
 
 model Course {
   id            String            @id @default(cuid())
-  subjects      SubjectsCourses[]
   descrition    String
   year          Int
   specialtyCode String
   speciality    Specialty         @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
+  subjects      SubjectsCourses[]
 }
 
 model Subject {
   name        String             @unique
-  teachers    TeachersSubjects[]
   specialties SubjectsCourses[]
+  teachers    TeachersSubjects[]
 }
 
 model SubjectsCourses {
@@ -58,35 +57,37 @@ model SubjectsCourses {
 
 model User {
   id        String   @id @default(cuid())
-  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+  email     String   @unique
+  password  String
   teacherId String?  @unique
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
 }
 
-model TeachersInSpecialties {
-  teacherId     String
-  teacher       Teacher   @relation(fields: [teacherId], references: [id])
-  specialtyCode String
-  speciality    Specialty @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
+model TeachersOfFaculty {
+  teacherId    String
+  facultyTitle String
+  faculty      Faculty @relation(fields: [facultyTitle], references: [title])
+  teacher      Teacher @relation(fields: [teacherId], references: [id])
 
-  @@id([teacherId, specialtyCode])
+  @@id([teacherId, facultyTitle])
 }
 
 model Teacher {
-  id          String                  @id @default(cuid())
-  user        User?
+  id          String              @id @default(cuid())
   lastName    String
   firstName   String
   midlleName  String
-  specialties TeachersInSpecialties[]
+  specialties TeachersOfFaculty[]
   skills      TeachersSkills[]
   subjects    TeachersSubjects[]
+  user        User?
 }
 
 model TeachersSkills {
   teacherId String
   skillName String
-  teacher   Teacher @relation(fields: [teacherId], references: [id])
   skill     Skill   @relation(fields: [skillName], references: [name])
+  teacher   Teacher @relation(fields: [teacherId], references: [id])
 
   @@id([teacherId, skillName])
 }
@@ -94,8 +95,9 @@ model TeachersSkills {
 model TeachersSubjects {
   teacherId   String
   subjectName String
-  teacher     Teacher @relation(fields: [teacherId], references: [id])
+  position    String
   subject     Subject @relation(fields: [subjectName], references: [name])
+  teacher     Teacher @relation(fields: [teacherId], references: [id])
 
   @@id([teacherId, subjectName])
 }
@@ -114,7 +116,6 @@ model Value {
 }
 
 model Question {
-  id      String   @id @default(cuid())
   order   Int      @unique
   body    String   @unique
   options Option[]

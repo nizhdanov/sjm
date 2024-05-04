@@ -18,6 +18,7 @@ const IsometricCamera = () => {
 export const Base = () => {
   return (
     <>
+      <color />
       <gridHelper args={[size, size]} />
       <IsometricCamera />
       <Environment preset='city' />
