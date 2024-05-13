@@ -46,7 +46,8 @@ module.exports = {
           'receiveShadow',
           'castShadow',
           'object',
-          'material'
+          'material',
+          'rotation-y'
         ]
       }
     ]

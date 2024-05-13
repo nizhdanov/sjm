@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "migrate": "prisma migrate dev --name"
+    "migrate": "prisma migrate dev --name",
+    "reset": "prisma migrate reset "
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -22,6 +23,7 @@
     "@react-three/fiber": "^8.16.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "dayjs": "^1.11.11",
     "jotai": "^2.8.0",
     "next": "14.2.2",
     "react": "^18",

@@ -8,7 +8,7 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '16px',
       screens: {
         '2xl': '1400px'
       }
@@ -57,6 +57,7 @@ const config = {
         },
         // SU colors
         su: {
+          green: 'hsl(var(--su-green))',
           purple: 'hsl(var(--su-purple))'
         }
       },

@@ -21,32 +21,56 @@ model Faculty {
 }
 
 model Specialty {
-  facultyTitle String
-  code         String   @unique
-  title        String   
-  step         String
-  points       Int
-  courses      Course[]
-  faculty      Faculty  @relation(fields: [facultyTitle], references: [title])
-  values       Value[]
+  facultyTitle   String
+  code           String          @unique
+  title          String
+  step           String
+  courses        Course[]
+  educationForms EducationForm[]
+  scholarships   Scholarship[]
+  faculty        Faculty         @relation(fields: [facultyTitle], references: [title])
+  values         Value[]
+}
+
+model Scholarship {
+  id            String    @id @default(cuid())
+  name          String
+  from          Int
+  to            Int
+  specialtyCode String
+  specialty     Specialty @relation(fields: [specialtyCode], references: [code])
+}
+
+model EducationForm {
+  id            String    @id @default(cuid())
+  name          String
+  specialtyCode String
+  budget        Int?
+  commercial    Int?
+  targeted      Int?
+  cost          Int?
+  time          String
+  avgPoints     Float?
+  minPoints     Int?
+  specialty     Specialty @relation(fields: [specialtyCode], references: [code])
 }
 
 model Course {
-  id            String            @id @default(cuid())
+  id            String              @id @default(cuid())
   descrition    String
   year          Int
   specialtyCode String
-  speciality    Specialty         @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
-  subjects      SubjectsCourses[]
+  speciality    Specialty           @relation(fields: [specialtyCode], references: [code], onDelete: Cascade)
+  subjects      SubjectsOfCourses[]
 }
 
 model Subject {
-  name        String             @unique
-  specialties SubjectsCourses[]
-  teachers    TeachersSubjects[]
+  name     String               @unique
+  courses  SubjectsOfCourses[]
+  teachers SubjectsOfTeachers[]
 }
 
-model SubjectsCourses {
+model SubjectsOfCourses {
   courseId    String
   subjectName String
   course      Course  @relation(fields: [courseId], references: [id])
@@ -73,17 +97,18 @@ model TeachersOfFaculty {
 }
 
 model Teacher {
-  id          String              @id @default(cuid())
+  id          String               @id @default(cuid())
   lastName    String
   firstName   String
   midlleName  String
-  specialties TeachersOfFaculty[]
-  skills      TeachersSkills[]
-  subjects    TeachersSubjects[]
+  workStatus  String
+  skills      SkillsOfTeachers[]
+  subjects    SubjectsOfTeachers[]
+  faculties   TeachersOfFaculty[]
   user        User?
 }
 
-model TeachersSkills {
+model SkillsOfTeachers {
   teacherId String
   skillName String
   skill     Skill   @relation(fields: [skillName], references: [name])
@@ -92,7 +117,7 @@ model TeachersSkills {
   @@id([teacherId, skillName])
 }
 
-model TeachersSubjects {
+model SubjectsOfTeachers {
   teacherId   String
   subjectName String
   position    String
@@ -103,8 +128,8 @@ model TeachersSubjects {
 }
 
 model Skill {
-  name     String           @unique
-  teachers TeachersSkills[]
+  name     String             @unique
+  teachers SkillsOfTeachers[]
 }
 
 model Value {

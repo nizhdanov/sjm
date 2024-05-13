@@ -1,11 +1,38 @@
 import { prisma } from './prisma';
 
-export const getAllSpecialties = async () => await prisma.specialty.findMany();
+export const getAllSpecialtiesForCards = async () =>
+  await prisma.specialty.findMany({
+    select: {
+      title: true,
+      faculty: {
+        select: {
+          instituteTitle: true
+        }
+      },
+      code: true,
+      step: true,
+      educationForms: {
+        select: {
+          minPoints: true
+        }
+      }
+    }
+  });
 
 export const getSpecialtyByCode = async (code: string) =>
   await prisma.specialty.findUnique({
     where: {
       code
+    }
+  });
+
+export const getSpecialtyTitleByCode = async (code: string) =>
+  await prisma.specialty.findUnique({
+    where: {
+      code
+    },
+    select: {
+      title: true
     }
   });
 
@@ -15,8 +42,13 @@ export const getDetailedSpecialtyByCode = async (code: string) =>
       code
     },
     include: {
-      courses: true,
-      teachers: true
+      courses: {
+        include: {
+          subjects: true
+        }
+      },
+      scholarships: true,
+      educationForms: true
     }
   });
 

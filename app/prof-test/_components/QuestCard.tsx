@@ -27,7 +27,7 @@ export const QuestCard = ({ question }: QuestCardProps) => {
   }
 
   return (
-    <Card>
+    <Card className='w-full'>
       <CardHeader>
         <CardTitle className='text-foreground'>{question.body}</CardTitle>
       </CardHeader>

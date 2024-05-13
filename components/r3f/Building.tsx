@@ -15,43 +15,53 @@ import {
   DrawerHeader,
   DrawerTitle
 } from '@/ui/drawer';
+import { Typography } from '@/ui/typography';
 
-type Item = 'test' | 'test2';
+export type BuildingName = 'unikit' | 'korabl';
+
+interface BuildingModelItem {
+  name: BuildingName;
+  gridPosition: [number, number];
+  size: [number, number];
+  rotation?: number;
+}
 
 interface BuildingModelProps {
   onClick: (open: boolean) => void;
-  item: Item;
-  grid: [number, number];
-  scale?: number;
+  item: BuildingModelItem;
 }
 
-const BuildingModel = ({ onClick, item, grid, scale }: BuildingModelProps) => {
-  const { scene } = useGLTF(`/models/${item}.glb`);
-  // Skinned meshes cannot be re-used in threejs without cloning them
+const BuildingModel = ({ onClick, item }: BuildingModelProps) => {
+  const { scene } = useGLTF(`/models/${item.name}.glb`);
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   return (
-    <group>
-      <primitive
-        scale={scale}
-        position={[grid[0], 0, grid[1]]}
-        onClick={() => onClick(true)}
-        object={clone}
-        castShadow
-      />
+    <group
+      onClick={() => onClick(true)}
+      position={[
+        item.size[0] / 2 + item.gridPosition[0],
+        0,
+        item.size[1] / 2 + item.gridPosition[1]
+      ]}
+    >
+      <primitive rotation-y={((item.rotation || 0) * Math.PI) / 2} object={clone} castShadow />
+      <mesh rotation-x={-Math.PI / 2} position={[0, -0.002, 0]}>
+        <planeGeometry args={[item.size[0], item.size[1]]} />
+        <meshBasicMaterial />
+      </mesh>
     </group>
   );
 };
 
-interface BuildingProps extends Omit<BuildingModelProps, 'onClick'> {
-  course: Course;
+export interface BuildingProps extends Omit<BuildingModelProps, 'onClick'> {
+  course: CourseWithSubjects;
 }
 
-export const Building = ({ item, grid, scale, course }: BuildingProps) => {
+export const Building = ({ item, course }: BuildingProps) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <BuildingModel onClick={setOpen} item={item} grid={grid} scale={scale} />
+      <BuildingModel onClick={setOpen} item={item} />
       <dom.In>
         <Drawer open={open} onOpenChange={setOpen}>
           <DrawerContent>
@@ -59,7 +69,18 @@ export const Building = ({ item, grid, scale, course }: BuildingProps) => {
               <DrawerTitle>{course?.year} курс</DrawerTitle>
               <DrawerDescription>{course?.descrition}</DrawerDescription>
             </DrawerHeader>
-            {}
+            <div className='px-4'>
+              <Typography variant='h3' tag='h3'>
+                Изучаемые дисциплины:
+              </Typography>
+              <ul className='flex flex-wrap gap-2.5'>
+                {course.subjects?.map((subject) => (
+                  <li key={subject.name} className='rounded-md px-2.5 py-1'>
+                    {subject.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <DrawerFooter className='pt-2'>
               <DrawerClose asChild>
                 <Button variant='outline'>Закрыть</Button>

@@ -2,26 +2,31 @@ import { useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { SkeletonUtils } from 'three-stdlib';
 
-type Forest = 'forest1' | 'forest2' | 'forest3';
-type Road = 'road';
+export type BasicModelName = 'round-road' | 'dash-road' | 'solid-road' | 'birch-tree';
 
-interface BasicModel {
-  grid: [number, number];
-  name: Forest | Road;
-  scale?: number;
+export interface BasicModelItem {
+  name: BasicModelName;
+  gridPosition: [number, number];
+  size: [number, number];
+  rotation?: number;
 }
 
-export const BasicModel = ({ grid, scale, name }: BasicModel) => {
-  const { scene } = useGLTF(`/models/${name}.glb`);
+interface BasicModelProps {
+  item: BasicModelItem;
+}
+
+export const BasicModel = ({ item }: BasicModelProps) => {
+  const { scene } = useGLTF(`/models/${item.name}.glb`);
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   return (
     <primitive
-      scale={scale}
-      position={[grid[0], 0, grid[1]]}
-      position-y={0}
       object={clone}
-      castShadow
-      // rotation-y={Math.PI}
+      position={[
+        item.size[0] / 2 + item.gridPosition[0],
+        0,
+        item.size[1] / 2 + item.gridPosition[1]
+      ]}
+      rotation-y={((item.rotation || 0) * Math.PI) / 2}
     />
   );
 };

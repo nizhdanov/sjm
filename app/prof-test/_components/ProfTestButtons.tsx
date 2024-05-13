@@ -11,7 +11,7 @@ interface ProfTestButtonsProps {
 }
 
 export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
-  const { stage, setStage } = useStage();
+  const { stage, setStage } = useStage<number>();
   const { answers } = useAnswers();
   const { push } = useRouter();
 
@@ -40,7 +40,7 @@ export const ProfTestButtons = ({ questionsLenght }: ProfTestButtonsProps) => {
   }
 
   return (
-    <div className='grid w-full grid-cols-2 gap-5 '>
+    <div className='grid w-full grid-cols-2 gap-5'>
       <Button className='w-full' variant='outline' disabled={stage === 0} onClick={onClickBackBtn}>
         Назад
       </Button>

@@ -18,7 +18,6 @@ export const postCalculateResult = async (data: string[]) => {
       }
     });
     let values: Value[] = [];
-
     const valuesId = options.flatMap(({ values }) => values).map(({ valueId }) => valueId);
 
     for (const id of valuesId) {
