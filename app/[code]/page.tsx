@@ -178,11 +178,11 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
             ))}
           </ul>
         </section>
-        <section className='flex flex-col gap-3'>
+        <section className='flex w-full flex-col gap-3 md:max-w-[50%]'>
           <Typography tag='h2' variant='h2'>
             Часто задаваемые вопросы
           </Typography>
-          <Accordion type='single' collapsible className='w-full'>
+          <Accordion type='single' collapsible>
             <AccordionItem value='item-1'>
               <AccordionTrigger>Где можно узнать подробнее об общежитии?</AccordionTrigger>
               <AccordionContent>

@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 
 import { avenirNext } from '@/assets/fonts';
@@ -25,6 +26,7 @@ const RootLayout = ({
       <body className={avenirNext.className}>
         <Header />
         <Providers>{children}</Providers>
+        <SpeedInsights />
       </body>
     </html>
   );
