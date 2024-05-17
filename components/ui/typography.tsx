@@ -14,6 +14,7 @@ export const typographyVariants = cva('text-foreground', {
       span: 'text-xs font-normal text-ui-gray'
     },
     color: {
+      gray: 'text-ui-gray',
       'blue-to-purple':
         'bg-gradient-to-r from-primary to-su-purple to-70% bg-clip-text text-transparent',
       'blue-to-green':

@@ -6,12 +6,13 @@ import { cn } from '@/utils/cn';
 
 import { BasicModelItem } from './BasicModel';
 import { BuildingProps } from './Building';
-import { Base, ViewPortal } from './ViewPortal';
 
-const Building = dynamic(() => import('./Building').then((mod) => mod.Building), { ssr: false });
-const BasicModel = dynamic(() => import('./BasicModel').then((mod) => mod.BasicModel), {
-  ssr: false
+const ViewPortal = dynamic(() => import('./ViewPortal').then((mod) => mod.ViewPortal), {
+  loading: () => <div className='h-[400px] w-full bg-white' />
 });
+const Base = dynamic(() => import('./ViewPortal').then((mod) => mod.Base));
+const Building = dynamic(() => import('./Building').then((mod) => mod.Building));
+const BasicModel = dynamic(() => import('./BasicModel').then((mod) => mod.BasicModel));
 
 interface JourneyMapProps {
   courses: CourseWithSubjects[];

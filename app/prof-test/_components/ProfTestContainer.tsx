@@ -19,7 +19,7 @@ export const ProfTestContainer = ({ questions }: { questions: QuestionWithOption
             <Typography tag='h2' variant='base'>
               Готовы открыть двери карьерных возможностей?
               <br />
-              Пройдите тестирование, состоящее из шести вопросов, чтобы подобрать самое подходящее
+              Пройдите тестирование, состоящее из пяти вопросов, чтобы подобрать самое подходящее
               для вас направление.
             </Typography>
             <Button onClick={() => setStage(1)}>Начать тестирование</Button>

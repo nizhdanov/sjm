@@ -1,15 +1,19 @@
 import { Metadata, ResolvingMetadata } from 'next';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
 import { getDetailedSpecialtyByCode, getSpecialtyTitleByCode } from '@/api/specialties';
-import { JourneyMap } from '@/r3f/JourneyMap';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion';
 import { buttonVariants } from '@/ui/button';
 import { Card, CardContent, CardHeader } from '@/ui/card';
 import { Carousel, CarouselContent, CarouselItem, DotButtons } from '@/ui/carousel';
 import { Span, Typography } from '@/ui/typography';
 import { cn } from '@/utils/cn';
+
+const JourneyMap = dynamic(() => import('@/r3f/JourneyMap').then((mod) => mod.JourneyMap), {
+  loading: () => <div className='h-[400px] w-full bg-white' />
+});
 
 export async function generateMetadata(
   { params }: DetailedSpecialtyProps,
@@ -60,7 +64,7 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
                   <li>{form.budget ? `${form.budget} мест бюджет` : '-'}</li>
                   <li>{form.commercial ? `${form.commercial} мест коммерция` : '-'}</li>
                   <li>{form.targeted ? `${form.targeted} мест целевое` : '-'}</li>
-                  <li>{form.cost ? `${form.cost}₽ в год` : '-'}</li>
+                  <li>{form.cost ? `${form.cost.toLocaleString()}₽ в год` : '-'}</li>
                   <li>{form.time ? `${form.time}` : '-'}</li>
                   <li>{form.minPoints ? `проходной балл ${form.minPoints}` : '-'}</li>
                 </ul>
@@ -177,6 +181,10 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
               </li>
             ))}
           </ul>
+          <Typography tag='p' variant='p' color='gray'>
+            *выплаты осуществляются с применением районного коэффициента и процентной (северной)
+            надбавки
+          </Typography>
         </section>
         <section className='flex w-full flex-col gap-3 md:max-w-[50%]'>
           <Typography tag='h2' variant='h2'>

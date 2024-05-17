@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { LoaderCircleIcon } from '@/icons/LoaderCircleIcon';
 import { Button } from '@/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card';
 import { Label } from '@/ui/label';
@@ -18,6 +19,7 @@ interface QuestCardProps {
 
 export const QuestCard = ({ question }: QuestCardProps) => {
   const { answers, setAnswers } = useAnswers();
+  const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(
     answers.find((answer) => answer.order === question.order)?.optionId
   );
@@ -38,6 +40,7 @@ export const QuestCard = ({ question }: QuestCardProps) => {
 
   async function onClickNextBtn() {
     if (stage === 5) {
+      setLoading(true);
       const res = await fetch('/api/result', {
         method: 'POST',
         headers: {
@@ -88,7 +91,8 @@ export const QuestCard = ({ question }: QuestCardProps) => {
         >
           Назад
         </Button>
-        <Button className='w-full' disabled={typeof value === 'undefined'} onClick={onClickNextBtn}>
+        <Button className='w-full' disabled={Boolean(!value) || loading} onClick={onClickNextBtn}>
+          {loading && <LoaderCircleIcon className='mr-2 size-4 animate-spin' />}
           Далее
         </Button>
       </div>
