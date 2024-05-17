@@ -6,7 +6,7 @@ import { cn } from '@/utils/cn';
 
 export const Header = () => {
   return (
-    <header className='flex h-14 items-center bg-white px-4'>
+    <header className='sticky top-0 z-50 flex h-14 items-center border-b border-[#D9DCDF] bg-white px-4'>
       <div className='flex items-center gap-[10px] divide-x'>
         <Link href='/'>
           <LogoIcon className='h-10 w-auto' />

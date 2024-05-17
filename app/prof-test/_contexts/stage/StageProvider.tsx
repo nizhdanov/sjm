@@ -8,7 +8,7 @@ export interface StageProviderProps {
 }
 
 export const StageProvider: React.FC<StageProviderProps> = ({ children }) => {
-  const [stage, setStage] = useState<Stage>('start');
+  const [stage, setStage] = useState<Stage>(0);
 
   const value = useMemo(() => ({ stage, setStage }), [stage]);
 

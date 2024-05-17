@@ -18,6 +18,7 @@
       }
     ],
     "paths": {
+      "@/hooks/*": ["./lib/hooks/*"],
       "@/api/*": ["./lib/api/*"],
       "@/helpers/*": ["./lib/helpers/*"],
       "@/utils/*": ["./lib/utils/*"],

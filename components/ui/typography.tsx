@@ -3,13 +3,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { avenirNext, openSans } from '@/assets/fonts';
 import { cn } from '@/lib/utils/cn';
 
-const typographyVariants = cva('text-foreground', {
+export const typographyVariants = cva('text-foreground', {
   variants: {
     variant: {
       base: cn(avenirNext.className, 'text-base font-normal'),
       h1: cn(openSans.className, 'text-lg font-bold '),
       h2: cn(openSans.className, 'text-lg font-semibold '),
       h3: cn(openSans.className, 'text-base font-semibold '),
+      p: cn(openSans.className, 'text-sm font-normal '),
       span: 'text-xs font-normal text-ui-gray'
     },
     color: {
@@ -37,7 +38,7 @@ export const Typography = <Tag extends TypographyTag = 'div'>({
 }: TypographyProps<Tag>) => {
   const Component = tag;
   return (
-    <Component className={cn(typographyVariants({ variant, color, className }))} {...props}>
+    <Component className={cn(typographyVariants({ color, variant, className }))} {...props}>
       {children}
     </Component>
   );

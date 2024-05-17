@@ -3,5 +3,5 @@ type QuestionWithOptions = import('@prisma/client').Question & {
 };
 
 type CourseWithSubjects = import('@prisma/client').Course & {
-  subjects: import('@prisma/client').Subject[];
+  subjects: import('@prisma/client').SubjectsOfCourses[];
 };

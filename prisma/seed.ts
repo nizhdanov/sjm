@@ -9,6 +9,236 @@ import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+const asoiuTeachers = [
+  {
+    firstName: 'Тарас',
+    lastName: 'Гавриленко',
+    midlleName: 'Владимирович',
+    image: 'gavrilenko',
+    workStatus: 'Доцент',
+    skills: [
+      'Математическое моделирование',
+      'Алгоритмы и программирование',
+      'Биофизика',
+      'Искусственный интеллект',
+      'Защита информации'
+    ],
+    subjects: [
+      'Методы защиты информации',
+      'Риски и безопасность',
+      'Интеллектуальные системы',
+      'Программирование мобильных устройств',
+      'Проектирование и эксплуатация ИЭС',
+      'Проектирование ТСАС',
+      'Технологии и методы распознавания образов',
+      'Инструменты, подходы и методы обработки структурированных и неструктурированных данных',
+      'Методы и технологии анализа данных временных рядов',
+      'Искусственные нейронные сети',
+      'Компьютерные технологии в науке и образовании'
+    ]
+  },
+  {
+    firstName: 'Мария',
+    lastName: 'Юрчишина',
+    midlleName: 'Владимировна',
+    image: 'urchishina',
+    workStatus: 'Старший преподаватель',
+    skills: ['Вычислительная математика', 'Оптимизация', 'Проектирование АСОИУ'],
+    subjects: [
+      'Проектирование АСОИУ',
+      'Вычислительная математика',
+      'Теория принятия решений',
+      'Базы данных и базы знаний',
+      'Оптимизация проектных решений',
+      'ТФКП и дифференциальные уравнения',
+      'Теоретические основы автоматизированного управления',
+      'Основы проектной деятельности',
+      'Онтологическое моделирование',
+      'Методы оптимизации'
+    ]
+  },
+  {
+    firstName: 'Дмитрий',
+    lastName: 'Горбунов',
+    midlleName: 'Владимирович',
+    image: 'gorbunov',
+    workStatus: 'Старший преподаватель',
+    skills: [
+      'Биофизика',
+      'Математическое моделирование',
+      'C#',
+      'Дифференциальные уравнения',
+      'Численные методы',
+      'Комплексы программ',
+      'Математическая статистика'
+    ],
+    subjects: [
+      'Информационные технологии в ИВТ',
+      'Операционные системы',
+      'Системное программное обеспечение',
+      'Вычислительные системы',
+      'Состояние и основные проблемы автоматизации в промышленности',
+      'История и методология информатики и вычислительной техники'
+    ]
+  },
+  {
+    firstName: 'Антон',
+    lastName: 'Никифоров',
+    midlleName: 'Владимирович',
+    image: 'nikiforov',
+    workStatus: 'Старший преподаватель',
+    skills: [
+      'C++',
+      'IoT',
+      'Hardware developer',
+      'C#',
+      '.NET',
+      'ASP NET Core',
+      'Backend developer',
+      'NGINX',
+      'Docker',
+      'Redis',
+      'ElasticSearch',
+      'Kibana',
+      'Prometheus',
+      'Grafana',
+      'PostgreSQL',
+      'AnyLogic',
+      'Statistics and data analysis',
+      'Computer simulation'
+    ],
+    subjects: [
+      'ЭВМ и экспертные устройства',
+      'Моделирование систем',
+      'Средства интеграции компонентов интеллектуальных систем',
+      'Интерфейсы информационных систем',
+      'Агентные и мультиагентные системы',
+      'Архитектура программных систем',
+      'Объектно-ориентированное проектирование и программирование'
+    ]
+  }
+];
+
+const aiksTeachers = [
+  {
+    firstName: 'Сергей',
+    lastName: 'Кошкин',
+    midlleName: 'Сергеевич',
+    image: 'koshkin',
+    workStatus: 'Старший преподаватель',
+    skills: [
+      'C++',
+      'IoT',
+      'Hardware developer',
+      'C#',
+      '.NET',
+      'ASP NET Core',
+      'Backend developer',
+      'NGINX',
+      'Docker',
+      'Redis',
+      'ElasticSearch',
+      'Kibana',
+      'Prometheus',
+      'Grafana',
+      'PostgreSQL',
+      'AnyLogic',
+      'Statistics and data analysis',
+      'Computer simulation'
+    ],
+    subjects: [
+      'ЭВМ и экспертные устройства',
+      'Моделирование систем',
+      'Средства интеграции компонентов интеллектуальных систем',
+      'Интерфейсы информационных систем',
+      'Агентные и мультиагентные системы',
+      'Архитектура программных систем',
+      'Объектно-ориентированное проектирование и программирование'
+    ]
+  },
+  {
+    firstName: 'Павел',
+    lastName: 'Гришмановский',
+    midlleName: 'Валерьевич',
+    image: 'grishmanovskiy',
+    workStatus: 'Доцент',
+    skills: ['C', 'C++', 'Java', 'Kotlin', 'Android', 'OpenMP', 'MPI'],
+    subjects: [
+      'Алгоритмизация и программирование',
+      'Структурное программирование',
+      'Введение в программную инженерию',
+      'Объектно-ориентированное программирование',
+      'Теория языков программирования и методы трансляции',
+      'Основы робототехники',
+      'Технология разработки программного обеспечения',
+      'Параллельное программирование',
+      'Разработка приложений для ОС Android',
+      'Системы менеджмента качества'
+    ]
+  }
+];
+
+const ivtTeachers = [
+  {
+    firstName: 'Татьяна',
+    lastName: 'Воронцова',
+    midlleName: 'Дмитриевна',
+    image: 'vorontsova',
+    workStatus: 'Преподаватель департамента прикладной математики МИЭМ НИУ ВШЭ',
+    skills: ['Компьютерная безопасность'],
+    subjects: [
+      'Основы информационной безопасности',
+      'Кибербезопасность',
+      'Теория кодирования',
+      'Теория информации',
+      'Криптография'
+    ]
+  },
+  {
+    firstName: 'Михаил',
+    lastName: 'Кокорин',
+    midlleName: 'Андреевич',
+    image: 'kokorin',
+    workStatus: 'Практик-фрилансер',
+    skills: [
+      'Python',
+      'JS',
+      'NodeJS',
+      'NGINX',
+      'NestJS',
+      'HTML',
+      'PostrgeSQL',
+      'RabbitMQ',
+      'CSS',
+      'Docker',
+      'Vue',
+      'ElasticSearch',
+      'Svelte'
+    ],
+    subjects: [
+      'Базы данных',
+      'Основы WEB-разработки',
+      'Введение в профессиональную деятельность ИТ-специалиста'
+    ]
+  },
+  {
+    firstName: 'Светлана',
+    lastName: 'Лысенкова',
+    midlleName: 'Александровна',
+    image: 'vorontsova',
+    workStatus:
+      'Кандидат физико-математических наук, Доцент кафедры информатики и вычислительной техники Сургу',
+    skills: ['Численные методы', 'Машинное обучение', 'Анализ данных', 'Математический анализ'],
+    subjects: [
+      'Алгоритмы и языки программирования',
+      'Основы программирования',
+      'Теория кодирования',
+      'Теория информации',
+      'Криптография'
+    ]
+  }
+];
+
 const scholarships = [
   {
     name: 'Стандартная',
@@ -39,6 +269,38 @@ const institutesData: Prisma.InstituteCreateInput[] = [
       create: [
         {
           title: 'Кафедра автоматизированных систем обработки информации и управления',
+          teachers: {
+            create: [
+              {
+                firstName: asoiuTeachers[0].firstName,
+                image: asoiuTeachers[0].image,
+                lastName: asoiuTeachers[0].lastName,
+                midlleName: asoiuTeachers[0].midlleName,
+                workStatus: asoiuTeachers[0].workStatus
+              },
+              {
+                firstName: asoiuTeachers[1].firstName,
+                image: asoiuTeachers[1].image,
+                lastName: asoiuTeachers[1].lastName,
+                midlleName: asoiuTeachers[1].midlleName,
+                workStatus: asoiuTeachers[1].workStatus
+              },
+              {
+                firstName: asoiuTeachers[2].firstName,
+                image: asoiuTeachers[2].image,
+                lastName: asoiuTeachers[2].lastName,
+                midlleName: asoiuTeachers[2].midlleName,
+                workStatus: asoiuTeachers[2].workStatus
+              },
+              {
+                firstName: asoiuTeachers[3].firstName,
+                lastName: asoiuTeachers[3].lastName,
+                midlleName: asoiuTeachers[3].midlleName,
+                image: asoiuTeachers[3].image,
+                workStatus: asoiuTeachers[3].workStatus
+              }
+            ]
+          },
           specialties: {
             create: [
               {
@@ -95,7 +357,7 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                       budget: 24,
                       targeted: 8,
                       commercial: 10,
-                      cost: 777,
+                      cost: 198300,
                       time: '4 года',
                       avgPoints: 67.03,
                       minPoints: 191
@@ -103,7 +365,7 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                     {
                       name: 'Заочная',
                       commercial: 30,
-                      cost: 777,
+                      cost: 88300,
                       time: '4 года 11 месяцев'
                     }
                   ]
@@ -114,6 +376,31 @@ const institutesData: Prisma.InstituteCreateInput[] = [
         },
         {
           title: 'Кафедра информатики и вычислительной техники',
+          teachers: {
+            create: [
+              {
+                firstName: ivtTeachers[0].firstName,
+                image: ivtTeachers[0].image,
+                lastName: ivtTeachers[0].lastName,
+                midlleName: ivtTeachers[0].midlleName,
+                workStatus: ivtTeachers[0].workStatus
+              },
+              {
+                firstName: ivtTeachers[1].firstName,
+                image: ivtTeachers[1].image,
+                lastName: ivtTeachers[1].lastName,
+                midlleName: ivtTeachers[1].midlleName,
+                workStatus: ivtTeachers[1].workStatus
+              },
+              {
+                firstName: ivtTeachers[2].firstName,
+                image: ivtTeachers[2].image,
+                lastName: ivtTeachers[2].lastName,
+                midlleName: ivtTeachers[2].midlleName,
+                workStatus: ivtTeachers[2].workStatus
+              }
+            ]
+          },
           specialties: {
             create: [
               {
@@ -170,14 +457,14 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                       budget: 24,
                       targeted: 8,
                       commercial: 10,
-                      cost: 777,
+                      cost: 198300,
                       time: '4 года',
                       avgPoints: 74.23,
                       minPoints: 195
                     },
                     {
                       name: 'Заочная',
-                      cost: 777,
+                      cost: 88300,
                       time: '4 года 11 месяцев'
                     }
                   ]
@@ -188,6 +475,24 @@ const institutesData: Prisma.InstituteCreateInput[] = [
         },
         {
           title: 'Кафедра автоматики и компьютерных систем',
+          teachers: {
+            create: [
+              {
+                firstName: aiksTeachers[0].firstName,
+                image: aiksTeachers[0].image,
+                lastName: aiksTeachers[0].lastName,
+                midlleName: aiksTeachers[0].midlleName,
+                workStatus: aiksTeachers[0].workStatus
+              },
+              {
+                firstName: aiksTeachers[1].firstName,
+                image: aiksTeachers[1].image,
+                lastName: aiksTeachers[1].lastName,
+                midlleName: aiksTeachers[1].midlleName,
+                workStatus: aiksTeachers[1].workStatus
+              }
+            ]
+          },
           specialties: {
             create: [
               {
@@ -245,14 +550,14 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                       budget: 24,
                       targeted: 8,
                       commercial: 10,
-                      cost: 777,
+                      cost: 198300,
                       time: '4 года',
                       avgPoints: 74.61,
                       minPoints: 207
                     },
                     {
                       name: 'Заочная',
-                      cost: 777,
+                      cost: 88300,
                       commercial: 15,
                       time: '4 года 11 месяцев'
                     }
@@ -279,6 +584,24 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                   ]
                 },
                 step: 'Бакалавриат',
+                educationForms: {
+                  create: [
+                    {
+                      name: 'Очная',
+                      budget: 40,
+                      targeted: 4,
+                      commercial: 5,
+                      cost: 198300,
+                      time: '4 года'
+                    },
+                    {
+                      name: 'Заочная',
+                      cost: 88300,
+                      commercial: 15,
+                      time: '4 года 11 месяцев'
+                    }
+                  ]
+                },
                 scholarships: {
                   create: scholarships
                 }
@@ -536,146 +859,7 @@ const piSubjects = [
   ]
 ];
 
-const utsSubjects = [['']];
-
-const asoiuTeachers = [
-  {
-    firstName: 'Гавриленко',
-    lastName: 'Тарас',
-    midlleName: 'Владимирович',
-    skills: [
-      'Математическое моделирование',
-      'Алгоритмы и программирование',
-      'Биофизика',
-      'Искусственный интеллект',
-      'Защита информации'
-    ],
-    subjects: [
-      'Методы защиты информации',
-      'Риски и безопасность',
-      'Интеллектуальные системы',
-      'Программирование мобильных устройств',
-      'Проектирование и эксплуатация ИЭС',
-      'Проектирование ТСАС',
-      'Технологии и методы распознавания образов',
-      'Инструменты, подходы и методы обработки структурированных и неструктурированных данных',
-      'Методы и технологии анализа данных временных рядов',
-      'Искусственные нейронные сети',
-      'Компьютерные технологии в науке и образовании'
-    ]
-  },
-  {
-    firstName: 'Юрчишина',
-    lastName: 'Мария',
-    midlleName: 'Владимировна',
-    skills: ['Вычислительная математика', 'Оптимизация', 'Проектирование АСОИУ'],
-    subjects: [
-      'Проектирование АСОИУ',
-      'Вычислительная математика',
-      'Теория принятия решений',
-      'Базы данных и базы знаний',
-      'Оптимизация проектных решений',
-      'ТФКП и дифференциальные уравнения',
-      'Теоретические основы автоматизированного управления',
-      'Основы проектной деятельности',
-      'Онтологическое моделирование',
-      'Методы оптимизации'
-    ]
-  },
-  {
-    firstName: 'Горбунов',
-    lastName: 'Дмитрий',
-    midlleName: 'Владимирович',
-    skills: [
-      'Биофизика',
-      'Математическое моделирование',
-      'C#',
-      'Дифференциальные уравнения',
-      'Численные методы',
-      'Комплексы программ',
-      'Математическая статистика'
-    ],
-    subjects: [
-      'Информационные технологии в ИВТ',
-      'Операционные системы',
-      'Системное программное обеспечение',
-      'Вычислительные системы',
-      'Состояние и основные проблемы автоматизации в промышленности',
-      'История и методология информатики и вычислительной техники'
-    ]
-  },
-  {
-    firstName: 'Никифоров',
-    lastName: 'Антон',
-    midlleName: 'Владимирович',
-    skills: [
-      'C++',
-      'IoT',
-      'Hardware developer',
-      'C#',
-      '.NET',
-      'ASP NET Core',
-      'Backend developer',
-      'NGINX',
-      'Docker',
-      'Redis',
-      'ElasticSearch',
-      'Kibana',
-      'Prometheus',
-      'Grafana',
-      'PostgreSQL',
-      'AnyLogic',
-      'Statistics and data analysis',
-      'Computer simulation'
-    ],
-    subjects: [
-      'ЭВМ и экспертные устройства',
-      'Моделирование систем',
-      'Средства интеграции компонентов интеллектуальных систем',
-      'Интерфейсы информационных систем',
-      'Агентные и мультиагентные системы',
-      'Архитектура программных систем',
-      'Объектно-ориентированное проектирование и программирование'
-    ]
-  }
-];
-
-const aiksTeachers = [
-  {
-    firstName: 'Кошкин',
-    lastName: 'Сергей',
-    midlleName: 'Сергеевич',
-    skills: [
-      'C++',
-      'IoT',
-      'Hardware developer',
-      'C#',
-      '.NET',
-      'ASP NET Core',
-      'Backend developer',
-      'NGINX',
-      'Docker',
-      'Redis',
-      'ElasticSearch',
-      'Kibana',
-      'Prometheus',
-      'Grafana',
-      'PostgreSQL',
-      'AnyLogic',
-      'Statistics and data analysis',
-      'Computer simulation'
-    ],
-    subjects: [
-      'ЭВМ и экспертные устройства',
-      'Моделирование систем',
-      'Средства интеграции компонентов интеллектуальных систем',
-      'Интерфейсы информационных систем',
-      'Агентные и мультиагентные системы',
-      'Архитектура программных систем',
-      'Объектно-ориентированное проектирование и программирование'
-    ]
-  }
-];
+// const utsSubjects = [['']];
 
 const specialtyCodes = ['09.03.01', '09.03.02', '09.03.04'];
 
@@ -690,17 +874,26 @@ const uniqueSubjects = Array.from(
   new Set([
     ...ivtSubjects.flat(),
     ...isitSubjects.flat(),
-    ...piSubjects.flat()
+    ...piSubjects.flat(),
     // ...utsSubjects.flat()
+    ...asoiuTeachers.map((t) => t.subjects).flat(),
+    ...aiksTeachers.map((t) => t.subjects).flat(),
+    ...ivtTeachers.map((t) => t.subjects).flat()
   ])
 );
 
+const uniqueSkills = Array.from(
+  new Set([
+    ...asoiuTeachers.map((t) => t.skills).flat(),
+    ...aiksTeachers.map((t) => t.skills).flat(),
+    ...ivtTeachers.map((t) => t.skills).flat()
+  ])
+);
+
+const allTeachers = [...asoiuTeachers, ...aiksTeachers, ...ivtTeachers];
+
 async function main() {
   console.log(`Start seeding ...`);
-
-  // await prisma.teacher.create({
-  //   data: {}
-  // });
 
   for (const i of institutesData) {
     await prisma.institute.create({
@@ -720,6 +913,42 @@ async function main() {
         name: s
       }
     });
+  }
+
+  for (const s of uniqueSkills) {
+    await prisma.skill.create({
+      data: {
+        name: s
+      }
+    });
+  }
+
+  for (const t of allTeachers) {
+    const teacher = await prisma.teacher.findFirst({
+      where: {
+        lastName: t.lastName
+      }
+    });
+
+    if (teacher) {
+      for (const subject of t.subjects) {
+        await prisma.subjectsOfTeachers.create({
+          data: {
+            teacherId: teacher.id,
+            subjectName: subject
+          }
+        });
+      }
+
+      for (const skill of t.skills) {
+        await prisma.skillsOfTeachers.create({
+          data: {
+            teacherId: teacher.id,
+            skillName: skill
+          }
+        });
+      }
+    }
   }
 
   for (const code of specialtyCodes) {

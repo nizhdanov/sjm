@@ -10,7 +10,7 @@ interface Models {
   };
 }
 
-export const models: Models = {
+const models: Models = {
   trees: {
     birch: {
       name: 'birch-tree',

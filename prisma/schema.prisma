@@ -13,11 +13,11 @@ model Institute {
 }
 
 model Faculty {
-  title          String              @unique
+  title          String      @unique
   instituteTitle String
-  institute      Institute           @relation(fields: [instituteTitle], references: [title])
+  institute      Institute   @relation(fields: [instituteTitle], references: [title])
   specialties    Specialty[]
-  teachers       TeachersOfFaculty[]
+  teachers       Teacher[]
 }
 
 model Specialty {
@@ -79,33 +79,17 @@ model SubjectsOfCourses {
   @@id([courseId, subjectName])
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  teacherId String?  @unique
-  teacher   Teacher? @relation(fields: [teacherId], references: [id])
-}
-
-model TeachersOfFaculty {
-  teacherId    String
-  facultyTitle String
-  faculty      Faculty @relation(fields: [facultyTitle], references: [title])
-  teacher      Teacher @relation(fields: [teacherId], references: [id])
-
-  @@id([teacherId, facultyTitle])
-}
-
 model Teacher {
-  id          String               @id @default(cuid())
-  lastName    String
-  firstName   String
-  midlleName  String
-  workStatus  String
-  skills      SkillsOfTeachers[]
-  subjects    SubjectsOfTeachers[]
-  faculties   TeachersOfFaculty[]
-  user        User?
+  id           String               @id @default(cuid())
+  lastName     String
+  firstName    String
+  midlleName   String
+  workStatus   String
+  image        String
+  facultyTitle String
+  skills       SkillsOfTeachers[]
+  subjects     SubjectsOfTeachers[]
+  faculty      Faculty              @relation(fields: [facultyTitle], references: [title])
 }
 
 model SkillsOfTeachers {
@@ -120,7 +104,6 @@ model SkillsOfTeachers {
 model SubjectsOfTeachers {
   teacherId   String
   subjectName String
-  position    String
   subject     Subject @relation(fields: [subjectName], references: [name])
   teacher     Teacher @relation(fields: [teacherId], references: [id])
 

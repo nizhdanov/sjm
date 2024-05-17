@@ -10,7 +10,7 @@ const config = {
       center: true,
       padding: '16px',
       screens: {
-        '2xl': '1400px'
+        xl: '1280px'
       }
     },
     extend: {
@@ -55,6 +55,7 @@ const config = {
         ui: {
           gray: 'hsl(var(--ui-gray))'
         },
+
         // SU colors
         su: {
           green: 'hsl(var(--su-green))',
@@ -82,7 +83,10 @@ const config = {
       }
     }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [
+    require('tailwindcss-animate'),
+    require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' })
+  ]
 } satisfies Config;
 
 export default config;

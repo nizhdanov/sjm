@@ -47,12 +47,28 @@ export const getDetailedSpecialtyByCode = async (code: string) =>
           subjects: true
         }
       },
+      faculty: {
+        include: {
+          teachers: {
+            include: {
+              skills: {
+                select: {
+                  skillName: true
+                }
+              },
+              subjects: {
+                select: {
+                  subjectName: true
+                }
+              }
+            }
+          }
+        }
+      },
       scholarships: true,
       educationForms: true
     }
   });
-
-export type DetailedSpecialty = Awaited<ReturnType<typeof getDetailedSpecialtyByCode>>;
 
 export const getProfTestResult = async () => {
   try {

@@ -19,7 +19,7 @@ export const Base = () => {
   return (
     <>
       <color attach='background' args={['#fff']} />
-      <gridHelper args={[size, size]} />
+      <gridHelper args={[size, size, '#A8A9A9', '#A8A9A9']} />
       <IsometricCamera />
       <Environment preset='city' />
       {/* <directionalLight position={[-size, size, size]} />

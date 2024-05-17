@@ -4,17 +4,19 @@ import { getAllSpecialtiesForCards } from '@/lib/api/specialties';
 import { Badge } from '@/ui/badge';
 import { buttonVariants } from '@/ui/button';
 import { Span, Typography } from '@/ui/typography';
-import { cn } from '@/utils/cn';
 
-const Home = async () => {
+const HomePage = async () => {
   const specialties = await getAllSpecialtiesForCards();
 
   return (
     <main className='container flex flex-col gap-5 py-5 '>
       {/* <Button variant='outline'>Фильтры</Button> */}
-      <Link href='/prof-test' className={cn(buttonVariants(), 'min-w-80')}>
-        Тестирование
-      </Link>
+      <div className='flex w-full min-w-80 flex-col'>
+        <Link href='/prof-test' className={buttonVariants()}>
+          Тестирование
+        </Link>
+      </div>
+
       <div className='flex w-full flex-col gap-5'>
         <Typography tag='h1' variant='h1'>
           Направления подготовки
@@ -45,4 +47,4 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -8,7 +8,7 @@ const R3fProvider = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null!);
 
   return (
-    <div ref={ref} className='relative size-full touch-auto overflow-auto'>
+    <div ref={ref} className='relative size-full touch-auto overflow-auto scrollbar-thin'>
       {children}
       <Scene
         style={{
