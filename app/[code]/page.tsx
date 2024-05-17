@@ -4,9 +4,12 @@ import { redirect } from 'next/navigation';
 
 import { getDetailedSpecialtyByCode, getSpecialtyTitleByCode } from '@/api/specialties';
 import { JourneyMap } from '@/r3f/JourneyMap';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion';
+import { buttonVariants } from '@/ui/button';
 import { Card, CardContent, CardHeader } from '@/ui/card';
 import { Carousel, CarouselContent, CarouselItem, DotButtons } from '@/ui/carousel';
 import { Span, Typography } from '@/ui/typography';
+import { cn } from '@/utils/cn';
 
 export async function generateMetadata(
   { params }: DetailedSpecialtyProps,
@@ -177,8 +180,38 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
         </section>
         <section className='flex flex-col gap-3'>
           <Typography tag='h2' variant='h2'>
-            Полезные ссылки
+            Часто задаваемые вопросы
           </Typography>
+          <Accordion type='single' collapsible className='w-full'>
+            <AccordionItem value='item-1'>
+              <AccordionTrigger>Где можно узнать подробнее об общежитии?</AccordionTrigger>
+              <AccordionContent>
+                <a
+                  className={cn(buttonVariants({ variant: 'link', size: 'sm' }), 'text-sm')}
+                  href='https://www.surgu.ru/zhizn-surgu/sotsialnaya-podderzhka-i-obespechenie/obschezhitie'
+                >
+                  Общежитие
+                </a>
+                <a
+                  className={cn(buttonVariants({ variant: 'link', size: 'sm' }), 'text-sm')}
+                  href='https://www.surgu.ru/obschezhitiy/poryadok-zaseleniya-v-studencheskoe-obschezhitie-surgu/Informatsiya%20dlya%20%20vpervye%20zaselyayushchikhsya%20studentov'
+                >
+                  Для впервые заселяющихся студентов
+                </a>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value='item-2'>
+              <AccordionTrigger>Куда подавать документы?</AccordionTrigger>
+              <AccordionContent>
+                <a
+                  className={cn(buttonVariants({ variant: 'link', size: 'sm' }), 'text-sm')}
+                  href={`https://go.surgu.ru/${code.replaceAll('.', '')}`}
+                >
+                  Приёмная комиссия
+                </a>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </section>
       </div>
     </main>
