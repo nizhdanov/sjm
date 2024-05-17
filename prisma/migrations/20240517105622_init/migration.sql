@@ -92,7 +92,6 @@ CREATE TABLE "SkillsOfTeachers" (
 CREATE TABLE "SubjectsOfTeachers" (
     "teacherId" TEXT NOT NULL,
     "subjectName" TEXT NOT NULL,
-    "position" TEXT NOT NULL,
 
     CONSTRAINT "SubjectsOfTeachers_pkey" PRIMARY KEY ("teacherId","subjectName")
 );
