@@ -86,13 +86,14 @@ export const QuestCard = ({ question }: QuestCardProps) => {
         <Button
           className='w-full'
           variant='outline'
-          disabled={stage === 1}
+          disabled={stage === 1 || loading}
           onClick={onClickBackBtn}
         >
+          {loading && <LoaderCircleIcon className='mr-2 size-4' />}
           Назад
         </Button>
         <Button className='w-full' disabled={Boolean(!value) || loading} onClick={onClickNextBtn}>
-          {loading && <LoaderCircleIcon className='mr-2 size-4 animate-spin' />}
+          {loading && <LoaderCircleIcon className='mr-2 size-4' />}
           Далее
         </Button>
       </div>

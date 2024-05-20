@@ -1,8 +1,9 @@
 'use client';
 
 import { useRef } from 'react';
+import dynamic from 'next/dynamic';
 
-import { Scene } from './Scene';
+const Scene = dynamic(() => import('./Scene').then((mod) => mod.Scene), { ssr: false });
 
 const R3fProvider = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null!);

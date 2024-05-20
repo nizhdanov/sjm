@@ -1,24 +1,24 @@
 import Link from 'next/link';
 
-import { openSans } from '@/fonts';
 import { LogoIcon } from '@/icons/LogoIcon';
-import { cn } from '@/utils/cn';
+import { Span } from '@/ui/typography';
 
 export const Header = () => {
   return (
-    <header className='sticky top-0 z-50 flex h-14 items-center border-b border-[#D9DCDF] bg-white px-4'>
-      <div className='flex items-center gap-[10px] divide-x'>
-        <Link href='/'>
-          <LogoIcon className='h-10 w-auto' />
-        </Link>
-        <span className={cn('pl-[10px] text-xs uppercase leading-tight', openSans.className)}>
+    <header className='sticky top-0 z-50 mb-5 flex h-14 items-center justify-between border-b border-[#D9DCDF] bg-white px-4'>
+      <Link href='/' className='flex items-center gap-[10px] divide-x'>
+        <LogoIcon className='h-10 w-auto' />
+        <Span className={'pl-[10px] uppercase leading-tight'}>
           карта
           <br />
           путешествия
           <br />
           студента
-        </span>
-      </div>
+        </Span>
+      </Link>
+      <nav>
+        <Link href='/'>Главная</Link>
+      </nav>
     </header>
   );
 };

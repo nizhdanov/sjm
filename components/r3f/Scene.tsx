@@ -14,12 +14,3 @@ export const Scene = ({ ...props }) => {
     </Canvas>
   );
 };
-
-export const TestScene = ({ children, ...props }: { children: React.ReactNode }) => {
-  return (
-    <Canvas onCreated={(state) => (state.gl.toneMapping = AgXToneMapping)} {...props}>
-      {children}
-      <Preload all />
-    </Canvas>
-  );
-};

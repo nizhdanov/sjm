@@ -46,6 +46,8 @@ const BuildingModel = ({ onClick, item }: BuildingModelProps) => {
   return (
     <group
       onClick={() => onClick(true)}
+      onPointerOver={() => hover(true)}
+      onPointerOut={() => hover(false)}
       position={[
         item.size[0] / 2 + item.gridPosition[0],
         0,
@@ -58,12 +60,7 @@ const BuildingModel = ({ onClick, item }: BuildingModelProps) => {
         object={clone}
         castShadow
       />
-      <mesh
-        rotation-x={-Math.PI / 2}
-        position={[0, -0.002, 0]}
-        onPointerOver={() => hover(true)}
-        onPointerOut={() => hover(false)}
-      >
+      <mesh rotation-x={-Math.PI / 2} position={[0, -0.002, 0]}>
         <planeGeometry args={[item.size[0], item.size[1]]} />
         <meshBasicMaterial color={hovered ? '#BAF6B5' : 'white'} />
       </mesh>

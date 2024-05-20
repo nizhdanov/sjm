@@ -5,7 +5,7 @@ import { Badge } from '@/ui/badge';
 import { buttonVariants } from '@/ui/button';
 import { Span, Typography } from '@/ui/typography';
 
-const HomePage = async () => {
+const MainPage = async () => {
   const specialties = await getAllSpecialtiesForCards();
 
   return (
@@ -47,4 +47,4 @@ const HomePage = async () => {
   );
 };
 
-export default HomePage;
+export default MainPage;

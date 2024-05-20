@@ -1,4 +1,6 @@
-export const LoaderCircleIcon = (props: React.ComponentProps<'svg'>) => (
+import { cn } from '@/utils/cn';
+
+export const LoaderCircleIcon = ({ className, ...props }: React.ComponentProps<'svg'>) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='24'
@@ -9,6 +11,7 @@ export const LoaderCircleIcon = (props: React.ComponentProps<'svg'>) => (
     strokeWidth='2'
     strokeLinecap='round'
     strokeLinejoin='round'
+    className={cn('animate-spin', className)}
     {...props}
   >
     <path d='M21 12a9 9 0 1 1-6.219-8.56' />

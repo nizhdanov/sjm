@@ -7,11 +7,11 @@ export const typographyVariants = cva('text-foreground', {
   variants: {
     variant: {
       base: cn(avenirNext.className, 'text-base font-normal'),
-      h1: cn(openSans.className, 'text-lg font-bold '),
-      h2: cn(openSans.className, 'text-lg font-semibold '),
-      h3: cn(openSans.className, 'text-base font-semibold '),
-      p: cn(openSans.className, 'text-sm font-normal '),
-      span: 'text-xs font-normal text-ui-gray'
+      h1: cn(openSans.className, 'text-lg font-bold'),
+      h2: cn(openSans.className, 'text-lg font-semibold'),
+      h3: cn(openSans.className, 'text-base font-semibold'),
+      p: cn(openSans.className, 'text-sm font-normal'),
+      span: cn(openSans.className, 'text-xs font-normal')
     },
     color: {
       gray: 'text-ui-gray',
@@ -47,7 +47,13 @@ export const Typography = <Tag extends TypographyTag = 'div'>({
 
 type SpanProps = React.ComponentProps<'span'> & VariantProps<typeof typographyVariants>;
 
-export const Span = ({ variant = 'span', color, children, className, ...props }: SpanProps) => (
+export const Span = ({
+  variant = 'span',
+  color = 'gray',
+  children,
+  className,
+  ...props
+}: SpanProps) => (
   <span className={cn(typographyVariants({ variant, color, className }))} {...props}>
     {children}
   </span>

@@ -15,7 +15,7 @@ const config = {
     },
     extend: {
       height: {
-        's-minus-navbar': 'calc(100svh - 56px)'
+        's-minus-navbar': 'calc(100svh - 76px)'
       },
       colors: {
         border: 'hsl(var(--border))',

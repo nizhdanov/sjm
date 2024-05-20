@@ -2,17 +2,24 @@
 import dynamic from 'next/dynamic';
 
 import { dom } from '@/helpers/dom';
+import { LoaderCircleIcon } from '@/icons/LoaderCircleIcon';
 import { cn } from '@/utils/cn';
 
 import { BasicModelItem } from './BasicModel';
 import { BuildingProps } from './Building';
 
 const ViewPortal = dynamic(() => import('./ViewPortal').then((mod) => mod.ViewPortal), {
-  loading: () => <div className='h-[400px] w-full bg-white' />
+  ssr: false,
+  loading: () => (
+    <div className='flex h-[400px] w-full items-center justify-center bg-white '>
+      <LoaderCircleIcon className='text-foreground' />
+    </div>
+  )
 });
-const Base = dynamic(() => import('./ViewPortal').then((mod) => mod.Base));
-const Building = dynamic(() => import('./Building').then((mod) => mod.Building));
-const BasicModel = dynamic(() => import('./BasicModel').then((mod) => mod.BasicModel));
+const Building = dynamic(() => import('./Building').then((mod) => mod.Building), { ssr: false });
+const BasicModel = dynamic(() => import('./BasicModel').then((mod) => mod.BasicModel), {
+  ssr: false
+});
 
 interface JourneyMapProps {
   courses: CourseWithSubjects[];
@@ -195,7 +202,6 @@ export const JourneyMap = ({
             course={building.course}
           />
         ))}
-        <Base />
       </ViewPortal>
       <dom.Out />
     </>

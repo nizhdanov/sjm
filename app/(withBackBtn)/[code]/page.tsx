@@ -1,9 +1,9 @@
 import { Metadata, ResolvingMetadata } from 'next';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
 import { getDetailedSpecialtyByCode, getSpecialtyTitleByCode } from '@/api/specialties';
+import { JourneyMap } from '@/r3f/JourneyMap';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion';
 import { buttonVariants } from '@/ui/button';
 import { Card, CardContent, CardHeader } from '@/ui/card';
@@ -11,23 +11,19 @@ import { Carousel, CarouselContent, CarouselItem, DotButtons } from '@/ui/carous
 import { Span, Typography } from '@/ui/typography';
 import { cn } from '@/utils/cn';
 
-const JourneyMap = dynamic(() => import('@/r3f/JourneyMap').then((mod) => mod.JourneyMap), {
-  loading: () => <div className='h-[400px] w-full bg-white' />
-});
-
 export async function generateMetadata(
   { params }: DetailedSpecialtyProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const code = params.code.replaceAll('-', '.');
   const specialty = await getSpecialtyTitleByCode(code);
-  const previousImages = (await parent).openGraph?.images || [];
+  // const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: specialty?.title,
-    openGraph: {
-      images: ['/some-specific-page-image.jpg', ...previousImages]
-    }
+    title: specialty?.title
+    // openGraph: {
+    //   images: ['/some-specific-page-image.jpg', ...previousImages]
+    // }
   };
 }
 
@@ -42,12 +38,10 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
   if (!specialty) return redirect('/');
 
   return (
-    <main className='mt-5 flex flex-col gap-5'>
-      <div className='container'>
-        <Typography tag='h1' variant='h1'>
-          {specialty.title} <Span>{specialty.code}</Span>
-        </Typography>
-      </div>
+    <main className='flex flex-col gap-5 pb-10'>
+      <Typography tag='h1' variant='h1' className='container'>
+        {specialty.title} <Span>{specialty.code}</Span>
+      </Typography>
       <JourneyMap className='h-[400px] w-full' courses={specialty.courses} />
       <div className='container flex flex-col gap-8'>
         <section className='flex flex-col gap-3'>
@@ -90,7 +84,7 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
               className='flex flex-col rounded-md bg-white px-4 py-2'
             >
               <Typography tag='h3' variant='h3'>
-                Презентация о СурГУ
+                Путь абитуриента
               </Typography>
             </a>
           </div>
@@ -100,9 +94,9 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
             Преподаватели
           </Typography>
           <Carousel className='w-full'>
-            <CarouselContent>
+            <CarouselContent className='p-1'>
               {specialty.faculty.teachers.map((teacher, index) => (
-                <CarouselItem key={index} className='lg:basis-1/2 '>
+                <CarouselItem key={index} className=' lg:basis-1/2'>
                   <Card className='flex h-full flex-col'>
                     <CardHeader className='items-center text-center'>
                       <Image
@@ -186,14 +180,14 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
             надбавки
           </Typography>
         </section>
-        <section className='flex w-full flex-col gap-3 md:max-w-[50%]'>
+        <section className='flex flex-col gap-3 '>
           <Typography tag='h2' variant='h2'>
             Часто задаваемые вопросы
           </Typography>
           <Accordion type='single' collapsible>
             <AccordionItem value='item-1'>
               <AccordionTrigger>Где можно узнать подробнее об общежитии?</AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className='flex flex-col items-start gap-3'>
                 <a
                   className={cn(buttonVariants({ variant: 'link', size: 'sm' }), 'text-sm')}
                   href='https://www.surgu.ru/zhizn-surgu/sotsialnaya-podderzhka-i-obespechenie/obschezhitie'

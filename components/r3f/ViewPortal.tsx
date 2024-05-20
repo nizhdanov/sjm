@@ -37,7 +37,10 @@ const ViewPortal = forwardRef<HTMLDivElement, React.ComponentProps<'div'>>(
       <>
         <div ref={localRef} {...props} />
         <r3f.In>
-          <View track={localRef}>{children}</View>
+          <View track={localRef}>
+            {children}
+            <Base />
+          </View>
         </r3f.In>
       </>
     );
