@@ -40,7 +40,7 @@ const BuildingModel = ({ onClick, item }: BuildingModelProps) => {
   const [hovered, hover] = useState(false);
   useCursor(hovered);
   useFrame(({ clock }) => {
-    modelRef.current.position.y = Math.abs(Math.sin(clock.getElapsedTime() * 1) * 0.3);
+    modelRef.current.position.y = Math.abs(Math.sin(clock.getElapsedTime() * 1.5) * 0.2);
   });
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   return (
@@ -53,13 +53,9 @@ const BuildingModel = ({ onClick, item }: BuildingModelProps) => {
         0,
         item.size[1] / 2 + item.gridPosition[1]
       ]}
+      rotation-y={((item.rotation || 0) * Math.PI) / 2}
     >
-      <primitive
-        ref={modelRef}
-        rotation-y={((item.rotation || 0) * Math.PI) / 2}
-        object={clone}
-        castShadow
-      />
+      <primitive ref={modelRef} object={clone} castShadow />
       <mesh rotation-x={-Math.PI / 2} position={[0, -0.002, 0]}>
         <planeGeometry args={[item.size[0], item.size[1]]} />
         <meshBasicMaterial color={hovered ? '#BAF6B5' : 'white'} />

@@ -42,7 +42,7 @@ const SpecialtyPage = async ({ params }: DetailedSpecialtyProps) => {
       <Typography tag='h1' variant='h1' className='container'>
         {specialty.title} <Span>{specialty.code}</Span>
       </Typography>
-      <JourneyMap className='h-[400px] w-full' courses={specialty.courses} />
+      <JourneyMap className='h-[450px] w-full' courses={specialty.courses} />
       <div className='container flex flex-col gap-8'>
         <section className='flex flex-col gap-3'>
           <Typography tag='h2' variant='h2'>

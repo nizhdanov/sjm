@@ -12,7 +12,7 @@ const size = 12;
 const IsometricCamera = () => {
   const { camera } = useThree();
   camera.lookAt(new Vector3(0, 0, 0));
-  return <OrthographicCamera zoom={50} makeDefault position={[size, size, size]} />;
+  return <OrthographicCamera zoom={45} makeDefault position={[size, size, size]} />;
 };
 
 export const Base = () => {
