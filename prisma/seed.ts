@@ -336,13 +336,13 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                       weight: 0.2
                     },
                     {
-                      weight: 0.15
+                      weight: 0.12
                     },
                     {
                       weight: 0.17
                     },
                     {
-                      weight: 0.15
+                      weight: 0.12
                     }
                   ]
                 },
@@ -433,13 +433,13 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                 values: {
                   create: [
                     {
-                      weight: 0.15
+                      weight: 0.12
                     },
                     {
                       weight: 0.2
                     },
                     {
-                      weight: 0.15
+                      weight: 0.12
                     },
                     {
                       weight: 0.17
@@ -521,16 +521,16 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                 values: {
                   create: [
                     {
-                      weight: 0.15
+                      weight: 0.17
                     },
                     {
-                      weight: 0.17
+                      weight: 0.12
                     },
                     {
                       weight: 0.2
                     },
                     {
-                      weight: 0.15
+                      weight: 0.12
                     }
                   ]
                 },
@@ -565,13 +565,13 @@ const institutesData: Prisma.InstituteCreateInput[] = [
                 values: {
                   create: [
                     {
+                      weight: 0.12
+                    },
+                    {
                       weight: 0.17
                     },
                     {
-                      weight: 0.15
-                    },
-                    {
-                      weight: 0.15
+                      weight: 0.12
                     },
                     {
                       weight: 0.2
