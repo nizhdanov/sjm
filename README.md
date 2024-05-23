@@ -8,3 +8,5 @@ yarn dev
 yarn build
 yarn start
 ```
+
+Переехали на гитхаб
