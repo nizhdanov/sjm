@@ -9,7 +9,7 @@ const MainPage = async () => {
   const specialties = await getAllSpecialtiesForCards();
 
   return (
-    <main className='container flex flex-col gap-5 py-5 '>
+    <main className='container flex flex-col gap-5 bg-red-400/60 py-5 '>
       {/* <Button variant='outline'>Фильтры</Button> */}
       <div className='flex w-full min-w-80 flex-col'>
         <Link href='/prof-test' className={buttonVariants()}>
