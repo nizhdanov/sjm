@@ -1,12 +1,1 @@
-```
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres?schema=public"
-```
-
-```
-yarn dev
-
-yarn build
-yarn start
-```
-
-Переехали на гитхаб
+Суть проекта в помощи определиться с направлением при поступлении в ВУЗ, красиво и доступно подать всю нужную информацию.
