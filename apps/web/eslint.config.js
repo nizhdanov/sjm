@@ -1,4 +1,3 @@
-import { nextJsConfig } from "@repo/eslint-config/next-js";
+import { eslint } from '@sjm/eslint';
 
-/** @type {import("eslint").Linter.Config} */
-export default nextJsConfig;
+export default eslint({ typescript: true, react: true, next: true, jsxA11y: true });
