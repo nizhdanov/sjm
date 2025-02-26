@@ -1,1 +1,1 @@
-# SJM
+# Students Jorney Map СурГУ

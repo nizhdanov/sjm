@@ -9,16 +9,21 @@
     "prod": "node dist/main",
     "format": "prettier --write .",
     "lint": "eslint . --fix",
-    "pretty": "npm run format && npm run lint"
+    "pretty": "npm run format && npm run lint",
+    "db:seed": "prisma db seed"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.10",
     "@nestjs/core": "^11.0.10",
     "@nestjs/platform-express": "^11.0.10",
+    "@nestjs/swagger": "^11.0.5",
+    "@prisma/client": "^6.4.1",
+    "@prisma/extension-accelerate": "^1.2.2",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@mermaid-js/mermaid-cli": "^11.4.2",
     "@nestjs/cli": "^11.0.4",
     "@nestjs/schematics": "^11.0.1",
     "@nizhdanov/prettier": "^0.0.0",
@@ -27,13 +32,16 @@
     "@types/node": "^22.13.5",
     "eslint": "^9.21.0",
     "eslint-plugin-perfectionist": "^4.9.0",
+    "prisma": "^6.4.1",
+    "prisma-erd-generator": "^2.0.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.1"
+    "typescript-eslint": "^8.25.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
+    "*": "prettier --write --ignore-unknown"
   }
 }

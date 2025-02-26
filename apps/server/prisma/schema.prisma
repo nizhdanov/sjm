@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
+enum Role {
+  USER
+  STAFF
+  ADMIN
+}
+
+enum FormName {
+  OCHNO
+  ZAOCHNO
+  OCHNO_ZAOCHNO
+}
+
+model User {
+  id           String  @id @default(uuid())
+  role         Role    @default(USER)
+  email        String  @unique
+  phone        String? @unique
+  passwordHash String
+}
+
+model Institute {
+  shortName String? @unique
+  fullName  String  @unique
+
+  departments Department[]
+}
+
+model Teacher {
+  id         Int    @id @default(autoincrement())
+  name       String
+  surname    String
+  patronymic String
+  position   String
+
+  departmentFullName String
+  department         Department @relation(fields: [departmentFullName], references: [fullName])
+}
+
+model Department {
+  shortName String? @unique
+  fullName  String  @unique
+
+  directions Direction[]
+  teachers   Teacher[]
+
+  instituteFullName String
+  institute         Institute @relation(fields: [instituteFullName], references: [fullName])
+}
+
+model Direction {
+  shortName String? @unique
+  fullName  String  @unique
+  code      String  @unique
+  level     String
+  minScore  Int
+  avgScore  Int
+
+  trials String[]
+
+  forms   Form[]
+  courses Course[]
+
+  departmentFullName String
+  department         Department @relation(fields: [departmentFullName], references: [fullName])
+}
+
+model Course {
+  id     Int @id @default(autoincrement())
+  number Int
+
+  terms Term[]
+
+  directionCode String
+  direction     Direction @relation(fields: [directionCode], references: [code])
+}
+
+model Term {
+  id       Int      @id @default(autoincrement())
+  number   Int
+  subjects String[]
+
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id])
+}
+
+model Form {
+  id      Int      @id @default(autoincrement())
+  name    FormName
+  months  Int
+  cost    Int
+  budget  Int
+  target  Int
+  payment Int
+
+  directionCode String
+  direction     Direction @relation(fields: [directionCode], references: [code])
+}
