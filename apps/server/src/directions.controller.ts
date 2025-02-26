@@ -28,13 +28,13 @@ export class DirectionsController {
   @ApiQuery({ name: 'forms', required: false, type: 'string или string[]' })
   @Get()
   async getDirections(
-    @Query('search') search?: string | undefined,
-    @Query('limit') limit?: string | undefined,
-    @Query('offset') offset?: string | undefined,
-    @QueryArray('levels') levels?: string[] | undefined,
-    @QueryArray('institutes') institutes?: string[] | undefined,
-    @QueryArray('trials') trials?: string[] | undefined,
-    @QueryArray('forms') forms?: FormName[] | undefined
+    @Query('search') search?: string,
+    @Query('limit') limit?: string,
+    @Query('offset') offset?: string,
+    @QueryArray('levels') levels?: string[],
+    @QueryArray('institutes') institutes?: string[],
+    @QueryArray('trials') trials?: string[],
+    @QueryArray('forms') forms?: FormName[]
   ) {
     return this.prismaService.direction.findMany({
       where: {
